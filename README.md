@@ -1,4 +1,4 @@
-SignageStudio Web Lite
+Boilerplate
 ======================
 current version: 0.0.1
 
