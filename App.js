@@ -1,12 +1,12 @@
 /**
- StudioLite MediaSignage Inc (c) open source digital signage project.
+ App MediaSignage Inc (c) open source digital signage project.
  Visit Github for license and docs: http://git.digitalsignage.com
- @class StudioLite
+ @class App
  @constructor
- @return {Object} instantiated StudioLite
+ @return {Object} instantiated App
  **/
-define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 'ComBroker', 'Lib', 'Jalapeno', 'JalapenoHelper'], function (_, $, Backbone, Bootstrap, backbonecontroller, ComBroker, Lib, Jalapeno, JalapenoHelper) {
-    var StudioLite = Backbone.Controller.extend({
+define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 'ComBroker', 'Lib'], function (_, $, Backbone, Bootstrap, backbonecontroller, ComBroker, Lib) {
+    var App = Backbone.Controller.extend({
 
         // app init
         initialize: function () {
@@ -22,12 +22,6 @@ define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 
             BB.lib.addBackboneViewOptions();
             BB.comBroker = new ComBroker();
             BB.comBroker.name = 'AppBroker';
-            BB.Jalapeno = new Jalapeno();
-            _.extend(BB.Jalapeno,BB.comBroker);
-            BB.Jalapeno.clearServices();
-            BB.Jalapeno.name = 'JalapenoBroker';
-            BB.JalapenoHelper = new JalapenoHelper();
-            window.jalapeno = BB.Jalapeno;
             window.log = BB.lib.log;
 
             // internationalization
@@ -47,5 +41,5 @@ define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 
         }
     });
 
-    return StudioLite;
+    return App;
 });

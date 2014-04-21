@@ -4,15 +4,17 @@
  **/
 require.config({
     waitSeconds: 25,
-    baseUrl: '/_mscontent/',
+    baseUrl: '/boilerplate/public/',
     paths: {
         'jquery': '_common/_jquery/std/jq1.9.1/jquery-1.9.1',
         'backbone': '_common/_js/backbone/backbone',
         'backbone.controller': '_common/_js/backbone-controller/backbone.controller',
+        'Lib': '_libs/Lib',
         'ComBroker': '_controllers/ComBroker',
         'underscore': '_common/_js/underscore/underscore',
         'bootstrap': '_common/_js/bootstrap/js/bootstrap',
         'Elements': 'Elements',
+        'localizer': '_common/_js/localizer/dist/jquery.localize',
         'LayoutRouter': '_controllers/LayoutRouter',
         'StackView': '_views/StackView'
     },
@@ -43,6 +45,6 @@ require.config({
     }
 });
 
-require(['App'], function (StudioLite) {
-    new StudioLite();
+require(['App'], function (App) {
+    new App();
 });
