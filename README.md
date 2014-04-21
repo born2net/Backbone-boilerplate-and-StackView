@@ -5,6 +5,8 @@ current version: 0.5.1
 A Boilerplate "real" application based on Backbone.js and powered by StackView
 ------------------------------------------------------------------------------
 
+Working Demo: https://secure.digitalsignage.com/boilerplate/public/index.html
+
 The application is a great way to get up and running quickly with everything one needs for a Single Page Application (SPA).
 It takes care of authentication, language selection, SPA views, properties box, popup dialog, popup messages and more.
 
