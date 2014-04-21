@@ -1,3 +1,29 @@
+Elements.MAIN_PANEL_WRAP = '#mainPanelWrap';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // elemenets
 Elements.APP_ENTRY = '#appEntry';
 Elements.WAITS_SCREEN_ENTRY_APP = '#waitScreenEntryApp';
@@ -11,7 +37,6 @@ Elements.APP_CONTENT = '#appContent';
 Elements.APP_NAVIGATOR = '#appNavigator';
 Elements.ADD_NEW_BLOCK_LIST_WRAP = '#addNewBlockListWrap';
 Elements.POP_MODAL = '#popModal';
-Elements.MAIN_PANEL_WRAP = '#mainPanelWrap';
 Elements.FORM_CAMPAIGN_NAME = '#formCampaignName';
 Elements.EMPTY_PROPERTIES = '#emptyProperties';
 Elements.CHANNEL_LIST_VIEW = '#channelListView';
