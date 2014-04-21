@@ -9,6 +9,7 @@ require.config({
         'jquery': '_common/_jquery/std/jq1.9.1/jquery-1.9.1',
         'backbone': '_common/_js/backbone/backbone',
         'backbone.controller': '_common/_js/backbone-controller/backbone.controller',
+        'RC4': '_common/_js/rc4/RC4',
         'Lib': '_libs/Lib',
         'bootbox': '_common/_js/bootbox/bootbox',
         'Cookie': '_common/_js/cookie/jquery.cookie',
@@ -18,14 +19,20 @@ require.config({
         'underscore': '_common/_js/underscore/underscore',
         'bootstrap': '_common/_js/bootstrap/js/bootstrap',
         'Elements': 'Elements',
+        'ResolutionSelectorView': '_views/ResolutionSelectorView',
+        'CampaignNameSelectorView': '_views/CampaignNameSelectorView',
         'localizer': '_common/_js/localizer/dist/jquery.localize',
         'LayoutRouter': '_controllers/LayoutRouter',
         'StackView': '_views/StackView',
         'AppAuth': '_controllers/AppAuth',
         'AppContentFaderView': '_views/AppContentFaderView',
         'AppEntryFaderView': '_views/AppEntryFaderView',
+        'PopModalView': '_views/PopModalView',
+        'CampaignSelectorView': '_views/CampaignSelectorView',
+        'OrientationSelectorView': '_views/OrientationSelectorView',
         'LoginView': '_views/LoginView',
         'LogoutView': '_views/LogoutView',
+        'PropertiesView': '_views/PropertiesView',
         'CampaignManagerView': '_views/CampaignManagerView',
         'ProStudioView': '_views/ProStudioView',
         'CampaignSliderStackView': '_views/CampaignSliderStackView',
@@ -69,6 +76,9 @@ require.config({
         'bootbox': {
             deps: ['jquery'],
             exports: 'bootbox'
+        },
+        'RC4': {
+            exports: 'RC4'
         }
     }
 });

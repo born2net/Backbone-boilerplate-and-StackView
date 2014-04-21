@@ -1,29 +1,3 @@
-Elements.MAIN_PANEL_WRAP = '#mainPanelWrap';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // elemenets
 Elements.APP_ENTRY = '#appEntry';
 Elements.WAITS_SCREEN_ENTRY_APP = '#waitScreenEntryApp';
@@ -37,6 +11,7 @@ Elements.APP_CONTENT = '#appContent';
 Elements.APP_NAVIGATOR = '#appNavigator';
 Elements.ADD_NEW_BLOCK_LIST_WRAP = '#addNewBlockListWrap';
 Elements.POP_MODAL = '#popModal';
+Elements.MAIN_PANEL_WRAP = '#mainPanelWrap';
 Elements.FORM_CAMPAIGN_NAME = '#formCampaignName';
 Elements.EMPTY_PROPERTIES = '#emptyProperties';
 Elements.CHANNEL_LIST_VIEW = '#channelListView';
@@ -192,10 +167,39 @@ Elements.LAYOUT_EDITOR_REMOVE = '#layoutEditorRemove';
 Elements.LAYOUT_EDITOR_PUSH_TOP = '#layoutEditorPushTop';
 Elements.LAYOUT_EDITOR_PUSH_BOTTOM = '#layoutEditorPushBottom';
 Elements.LAYOUT_EDITOR_NEXT = '#layoutEditorNext';
+Elements.LANGUAGE_SELECTION_LOGIN = '#languageSelectionLogin';
+Elements.LANGUAGE_PROMPT = '#languagePrompt';
+
+// messages
+Elements.MSG_BOOTBOX_RESTART_STATIONS = '#bootBoxRestartStations';
+Elements.MSG_BOOTBOX_STUDIO_LITE_ACC = '#bootBoxStudioLiteAcc';
+Elements.MSG_BOOTBOX_LOGIN_WRONG_CRED = '#bootBoxLoginWrongCred';
+Elements.MSG_BOOTBOX_SAVE_REMOTE_SRV = '#bootBoxSaveRemoteSrv';
+Elements.MSG_BOOTBOX_SAVE = '#bootBoxSave';
+Elements.MSG_BOOTBOX_SAVE_RESTART = '#bootBoxSaveAndRestart';
+Elements.MSG_BOOTBOX_CANCEL = '#bootBoxCancel';
+Elements.MSG_BOOTBOX_OK = '#bootBoxOk';
+Elements.MSG_BOOTBOX_NO_STATION_SELECTED = '#bootBoxNoStationSelected';
+Elements.MSG_BOOTBOX_PROBLEM_SAVING = '#bootBoxProblemSaving';
+Elements.MSG_BOOTBOX_LOGIN_PRO_CRED = '#bootBoxLoginWithProCred';
+Elements.MSG_BOOTBOX_PROBLEM = '#bootBoxProblem';
+Elements.MSG_BOOTBOX_WRONG_USER_PASS = '#bootBoxWrongUserOrPass';
+Elements.MSG_BOOTBOX_SURE_DELETE_CAMPAIGN ='#bootBoxSureDeleteCampaign';
+Elements.MSG_BOOTBOX_CANT_DELETE_COMP ='#bootBoxCantDeleteComp';
+Elements.MSG_BOOTBOX_SELECT_COMP_FIRST ='#bootBoxSelectCompFirst';
+Elements.MSG_BOOTBOX_SURE_REMOVE_TIMELINE ='#bootBoxSureRemoveTimeline';
+Elements.MSG_BOOTBOX_SELECT_RESOURCE ='#bootBoxSelectResource';
+Elements.MSG_BOOTBOX_SELECT_CHANNEL ='#bootBoxSelectChannel';
+Elements.MSG_BOOTBOX_AT_LEAST_ONE_DIV ='#bootBoxAtLeastOneDiv';
+Elements.MSG_BOOTBOX_SCREEN_DIV_POS_RESET ='#bootBoxScreenDivPosReset';
+Elements.MSG_BOOTBOX_COSTUME_TITLE ='#bootBoxCostumeTitle';
+Elements.MSG_BOOTBOX_CONTINUE ='#bootBoxContinue';
+Elements.MSG_BOOTBOX_STEPS ='#bootBoxSteps';
 
 // templates
 Elements.FONT_SELECTOR_TEMPLATE = '#fontSelectorTemplate';
 Elements.DIMENSION_PROPS_TEMPLATE = '#dimensionPropsTemplate';
+Elements.LANGUAGE_SELECTOR_TEMPLATE = '#languageSelector';
 
 // classes
 Elements.CLASS_SCREEN_DIVISION = '.screenDivisionClass';
@@ -222,6 +226,7 @@ Elements.CLASS_FONT_ALIGNMENT = '.fontAlignment';
 Elements.CLASS_SPINNER_INPUT = '.spinner-input';
 Elements.CLASS_FONT_SELECTION = '.fontSelection';
 
+
 /**
  List of all Elements / Classes of elements used in the DOM
  @class Elements
@@ -229,4 +234,5 @@ Elements.CLASS_FONT_SELECTION = '.fontSelection';
  **/
 function Elements() {
 };
+
 

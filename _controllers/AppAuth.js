@@ -4,7 +4,7 @@
  @constructor
  @return {Object} instantiated AppAuth
  **/
-define(['jquery', 'backbone', 'Cookie'], function ($, Backbone, Cookie) {
+define(['jquery', 'backbone', 'Cookie', 'RC4'], function ($, Backbone, Cookie) {
 
     BB.SERVICES.APP_AUTH = 'AppAuth';
 
@@ -23,7 +23,7 @@ define(['jquery', 'backbone', 'Cookie'], function ($, Backbone, Cookie) {
         },
 
         /**
-         Initiate user authentication against the Pepper db user credentials
+         Initiate user authentication
          @method authenticate
          @param {String} i_user
          @param {String} i_pass
@@ -65,7 +65,7 @@ define(['jquery', 'backbone', 'Cookie'], function ($, Backbone, Cookie) {
             var passedCredentials = self._loadPassedCredentials();
             var cookieCredentials = $.cookie('boilerplateappcookie') == undefined ? undefined : $.cookie('boilerplateappcookie').split(' ')[0];
 
-            if (passedCredentials){
+            if (passedCredentials) {
                 self._authServer(passedCredentials.user, passedCredentials.pass, self.AUTH_PARAMS);
 
             } else if (cookieCredentials) {
@@ -89,13 +89,12 @@ define(['jquery', 'backbone', 'Cookie'], function ($, Backbone, Cookie) {
          **/
         _authServer: function (i_user, i_pass, i_authMode) {
             var self = this;
-            BB.Pepper.dbConnect(i_user, i_pass, function (i_status) {
-                if (i_status.status) {
-                    self._authPassed(i_user, i_pass, i_status, i_authMode);
-                } else {
-                    self._authFailed(i_authMode, i_status);
-                }
-            });
+            // always login
+            if (1) {
+                self._authPassed(i_user, i_pass, i_authMode);
+            } else {
+                self._authFailed(i_authMode);
+            }
         },
 
         /**
@@ -103,35 +102,14 @@ define(['jquery', 'backbone', 'Cookie'], function ($, Backbone, Cookie) {
          @method _authPassed
          @param {String} i_user user name
          @param {String} i_pass user password
-         @param {String} i_status status message from remote mediaSERVER (could include warnings)
          @param {String} i_authMode indicates if authentication was done via cookie or user input
          **/
-        _authPassed: function (i_user, i_pass, i_status, i_authMode) {
+        _authPassed: function (i_user, i_pass, i_authMode) {
             var self = this;
-
             self.authenticated = true;
             // create cookie
             if (i_authMode == self.AUTH_USER_PASS && $(Elements.REMEMBER_ME).prop('checked'))
                 self._bakeCookie(i_user, i_pass);
-
-            if (i_status['warning'].length > 0) {
-                // Pro Account (not a Lite account) so limited access
-
-                // if module was not loaded yet wait to be notified from when it does
-                var navigationView = BB.comBroker.getService(BB.SERVICES['NAVIGATION_VIEW']);
-                if (_.isUndefined(navigationView)) {
-                    BB.comBroker.listen(BB.EVENTS.SERVICE_REGISTERED, function (e) {
-                        if (e.edata.name == BB.SERVICES['NAVIGATION_VIEW']) {
-                            var navigationView = e.edata.service;
-                            self._applyLimitedAccess(navigationView);
-                        }
-                    });
-                } else {
-                    // just in case we change the order of loadable modules in the future
-                    // and navigation module is ready before this module
-                    self._applyLimitedAccess(navigationView);
-                }
-            }
             BB.comBroker.getService(BB.SERVICES['LAYOUT_ROUTER']).navigate('authenticated', {trigger: true});
         },
 
@@ -141,7 +119,7 @@ define(['jquery', 'backbone', 'Cookie'], function ($, Backbone, Cookie) {
          @param {String} i_status status message from remote mediaSERVER (could include warnings)
          @param {String} i_authMode indicates if authentication was done via cookie or user input
          **/
-        _authFailed: function (i_authMode, i_status) {
+        _authFailed: function (i_authMode) {
             var self = this;
 
             // if cookie exists, delete it because obviously it didn't do the job
@@ -152,20 +130,17 @@ define(['jquery', 'backbone', 'Cookie'], function ($, Backbone, Cookie) {
                 $.removeCookie('boilerplateappcookie', { path: '/_studiolite-dist' });
             }
 
-            // let user know authentication failed
-            if (i_status.error == "not a studioLite account") {
-                bootbox.dialog({
-                    message: $(Elements.MSG_BOOTBOX_STUDIO_LITE_ACC).text(),
-                    buttons: {
-                        info: {
-                            label: $(Elements.MSG_BOOTBOX_OK).text(),
-                            className: "btn-primary",
-                            callback: function () {
-                            }
+            bootbox.dialog({
+                message: $(Elements.MSG_BOOTBOX_STUDIO_LITE_ACC).text(),
+                buttons: {
+                    info: {
+                        label: $(Elements.MSG_BOOTBOX_OK).text(),
+                        className: "btn-primary",
+                        callback: function () {
                         }
                     }
-                });
-            }
+                }
+            });
             BB.comBroker.getService(BB.SERVICES['LAYOUT_ROUTER']).navigate('authenticationFailed', {trigger: true});
         },
 
