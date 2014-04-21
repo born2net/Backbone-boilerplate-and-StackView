@@ -12,6 +12,7 @@ require.config({
         'RC4': '_common/_js/rc4/RC4',
         'Lib': '_libs/Lib',
         'bootbox': '_common/_js/bootbox/bootbox',
+        'nouislider': '_common/_js/nouislider/jquery.nouislider',
         'Cookie': '_common/_js/cookie/jquery.cookie',
         'ComBroker': '_controllers/ComBroker',
         'XDate': '_common/_js/xdate/xdate',
@@ -66,6 +67,9 @@ require.config({
         'Cookie': {
             deps: ['jquery'],
             exports: 'cookie'
+        },
+        'nouislider': {
+            exports: 'nouislider'
         },
         'ComBroker': {
             deps: ['backbone', 'jquery']

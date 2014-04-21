@@ -71,8 +71,6 @@
           <input id="rememberMe" type="checkbox" checked value="remember-me">
           <span data-localize="rememberMe"> Remember me </span></label>
         <button id="loginButton" class="btn btn-lg btn-primary btn-block" type="submit" data-localize="signin">Sign in </button>
-        
-        <!-- TODO ADDED -->
         <hr class="hrThin"/>
         <div id="languageSelectionLogin"> </div>
       </form>
@@ -110,8 +108,7 @@
                     <button id="newCampaign" type="button" class="btn btn-default"><i style="font-size: 1em"
                                                                                       class="fa fa-magic"></i> <span
                             data-localize="campaign_wizard">new campaign wizard</span></button>
-                    <button id="removeCampaign" type="button" class="btn btn-default"><i style="font-size: 1em"
-                                                                                         class="fa fa-trash-o"></i> <span data-localize="campaign_remove">remove</span></button>
+
                   </div>
                   <div id="campaignSelectorList" class="appList list-group"></div>
                 </div>
@@ -150,130 +147,8 @@
                 <h3 data-localize="screenLayout">Select your screen layout</h3>
                 <div id="screenLayoutList"></div>
               </div>
-              <div id="campaign" class="page right">
-                <div id="campaignView" class="yScroll">
-                  <div class="panel-group" id="timelinesCollapsible">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"> <a id="toggleTimelinesCollapsible" data-toggle="collapse" data-parent="#timelinesCollapsible" href="#screenSelectorContainerCollapse"> <span class="glyphicon glyphicon-chevron-down"></span> <span id="timelinesTotalLength"> 00:00:00</span></a>
-                          <button style="margin-left: 30px" id="addNewTimelineButton" type="button"
-                                        title="add new timeline" data-localize="timelineLength"
-                                        data-localize-tooltip="addNewTimelineButtonToolTip"
-                                        data-toggle="tooltip"
-                                        class="btn btn-default btn-sm"><span
-                                        class="glyphicon glyphicon-plus"></span></button>
-                          <button id="removeTimelineButton" type="button"
-                                        title="remove the selected timeline (one must exist)" data-toggle="tooltip"
-                                        data-localize-tooltip="removeTimelineButtonToolTip"
-                                        class="btn btn-default btn-sm"><span
-                                        class="glyphicon glyphicon-minus"></span></button>
-                        </h4>
-                      </div>
-                      <div id="screenSelectorContainerCollapse" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                          <aside>
-                            <aside>
-                              <div id="screenSelectorContainer" vertical-align="middle">
-                                <hr class="dottedHR">
-                                <ul id="screenLayoutsUL">
-                                </ul>
-                              </div>
-                            </aside>
-                          </aside>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <a href="index.html" style="display:none" id="attachDragDropMainScreenSelection"
-                   data-role="button">Link button</a> <a href="index.html" style="display:none"
-                                                         id="dettachDragDropMainScreenSelection"
-                                                         data-role="button">Link button</a>
-                  <div id="selectedTimeline" style="display: none">
-                    <div id="noneSelectedScreenLayout">
-                      <div align="center" id="screenMainSelector">
-                        <div align="center">
-                          <h1 data-localize="noTimelineSelected">no timeline selected</h1>
-                        </div>
-                      </div>
-                    </div>
-                    <div align="center" id="selectedLayoutContainer" class="centerContent"></div>
-                  </div>
-                  <div id="channelListView">
-                    <div>
-                      <button id="addBlockButton" type="button" class="btn btn-default"><span
-                                class="glyphicon glyphicon-plus"></span><span
-                                data-localize="addContent"> Add content </span></button>
-                      <button id="removeBlockButton" type="button" class="btn btn-default"><span
-                                class="glyphicon glyphicon-minus"></span><span data-localize="removeContent"> Remove content </span> </button>
-                    </div>
-                    <div>
-                      <ul class="list-group" id="sortable" style="padding:20px">
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="addBlockView" class="page right">
-                <button id="prev" type="button" class="openPropsButton btn btn-default btn-sm"><span
-                    class="glyphicon glyphicon-chevron-left"></span></button>
-                <h3 data-localize="contentToAdd">Select new content to add</h3>
-                <div id="addNewBlockListWrap" class="yScroll">
-                  <div class="panel-group" id="addNewBlockList">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#addNewBlockList"
-                                                       href="#collapseOne" data-localize="components"> components </a> </h4>
-                      </div>
-                      <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                          <ul class="list-group" id="addComponentBlockList" style="padding:20px">
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#addNewBlockList"
-                                                       href="#collapseTwo" data-localize="resources"> resources </a> </h4>
-                      </div>
-                      <div id="collapseTwo" class="panel-collapse collapse">
-                        <div class="panel-body">
-                          <ul class="list-group" id="addResourceBlockList" style="padding:20px">
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h4 class="panel-title"><a data-toggle="collapse" data-parent="#addNewBlockList"
-                                                       href="#collapseThree" data-localize="scenes"> scenes </a></h4>
-                      </div>
-                      <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="panel-body" data-localize="comingSoon"> coming soon...</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="screenLayoutEditorView" class="page right">
-                <button id="prev" type="button" class="openPropsButton btn btn-default btn-sm"><span
-                    class="glyphicon glyphicon-chevron-left"></span></button>
-                <h3 data-localize="editScreenLayoutTitle">Edit screen layout</h3>
-                <div class="btn-group">
-                  <button id="layoutEditorAddNew" type="button" data-localize-tooltip="addButtonToolTip" title="add" data-toggle="tooltip" class="btn btn-default btn-sm"><i style="font-size: 1em" class="fa fa-plus"> </i></button>
-                  <button id="layoutEditorRemove" type="button" data-localize-tooltip="removeButtonToolTip" title="remove division" data-toggle="tooltip" class="btn btn-default btn-sm"><i style="font-size: 1em" class="fa fa-minus"> </i></button>
-                  <button id="layoutEditorPushTop" type="button" data-localize-tooltip="pushDivToTopButtonToolTip" title="push division to top" data-toggle="tooltip" class="btn btn-default btn-sm"><i style="font-size: 1em" class="fa fa-angle-double-up"> </i></button>
-                  <button id="layoutEditorPushBottom" type="button" data-localize-tooltip="pushDivToBottomButtonToolTip" title="push division to bottom" data-toggle="tooltip" class="btn btn-default btn-sm"><i style="font-size: 1em" class="fa fa-angle-double-down"> </i></button>
-                  <button id="layoutEditorNext" type="button" data-localize-tooltip="getNextDivButtonToolTip" title="get next division" data-toggle="tooltip" class="btn btn-default btn-sm"><i style="font-size: 1em" class="fa fa-share"> </i></button>
-                </div>
-                <div id="screenLayoutEditorCanvasWrap" align="center"
-                 style="width: 100%; height: 100%; -webkit-user-select: none;"> </div>
-              </div>
-              <div id="waitScreenMainPanel" class="page center" style="display: none">
-                <div class="yScroll">
-                  <h1 data-localize="pleaseWait">Please wait</h1>
-                  <span> <img src="./_assets/preload7.gif"> </span></div>
-              </div>
+
+
             </div>
           </div>
           <div id="resourcesPanel" style="display: none">

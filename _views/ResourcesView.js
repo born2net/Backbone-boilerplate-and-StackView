@@ -25,11 +25,12 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          @method _render
          **/
         _render: function () {
+            /* Example of how to load modules on first render only
             if (!self.m_resourceListView) {
                 require(['ResourceListView'], function (ResourceListView) {
                     self.m_resourceListView = new ResourceListView({el: Elements.RESOURCES_LIST_VIEW });
                 });
-            }
+            }*/
         }
     });
 

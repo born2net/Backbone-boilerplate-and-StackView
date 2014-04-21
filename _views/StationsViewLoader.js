@@ -30,6 +30,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          **/
         _render: function () {
             var self = this;
+            /* example of how to load modules on first render only
             if (!self.m_stationsListView) {
                 require(['StationsListView'], function (StationsListView) {
                     self.m_stationsListView = new StationsListView({
@@ -39,6 +40,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             } else {
                 self.m_stationsListView.render();
             }
+            */
         },
 
         /**
@@ -46,6 +48,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          @method _unrender
          **/
         _unrender: function () {
+            // example of how to hide module on unrender
             var self = this;
             if (self.m_stationsListView)
                 self.m_stationsListView.unrender();
