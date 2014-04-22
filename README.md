@@ -18,7 +18,7 @@ Best of all, the app is powered by StackView which allows you a simple yet effec
 With StackView you have the power to switch between sliders, popups and Fade Views using smooth animation.
 And the great thing is that you don't have to jump through hoops to get it all working nicely together.
 
-TO grab the source code and learn more about StackView (The awesome Backbone.View manager) go here:
+To grab the source code and learn more about StackView (The awesome Backbone.View manager) go here:
 https://github.com/born2net/StackView
 
 The sample application takes advantage of the following technologies:
