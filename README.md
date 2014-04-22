@@ -9,6 +9,7 @@ Working Demo: https://secure.digitalsignage.com/boilerplate/public/index.html
 
 The application is a great way to get up and running quickly with everything one needs for a Single Page Application (SPA).
 It takes care of authentication, language selection, SPA views, properties box, popup dialog, popup messages and more.
+Component communication is achieved through ComBroker which was developed around the Mediator pattern.
 
 Best of all, the app is powered by StackView which allows you a simple yet effective way to switch between Backbone views.
 With StackView you have the power to switch between sliders, popups and Fade Views using smooth animation.
@@ -17,6 +18,7 @@ And the great thing is that you don't have to jump through loops, simply create 
 The sample application takes advantage of the following technologies:
 
  - StackView
+ - ComBroker
  - Backbone
  - jQuery
  - Cookie
