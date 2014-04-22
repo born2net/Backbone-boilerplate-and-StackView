@@ -119,47 +119,12 @@ define(['jquery', 'backbone'], function ($, Backbone) {
         },
 
         /**
-         Remove an entire campaign including its timelines, channels, blocks, template, board etc
+         Remove an entire campaign
          @method removeCampaign
          @return none
          **/
         _removeCampaignFromMSDB: function (i_campaign_id) {
             var self = this;
-
-            var timelineIDs = pepper.getCampaignTimelines(i_campaign_id);
-
-            for (var i = 0; i < timelineIDs.length; i++) {
-                var timelineID = timelineIDs[i];
-                pepper.removeTimelineFromCampaign(timelineID);
-                var campaignTimelineBoardTemplateID = pepper.removeBoardTemplateFromTimeline(timelineID);
-                pepper.removeTimelineBoardViewerChannels(campaignTimelineBoardTemplateID);
-                var boardTemplateID = pepper.getGlobalBoardIDFromTimeline(timelineID);
-                pepper.removeBoardTemplate(boardTemplateID);
-                pepper.removeBoardTemplateViewers(boardTemplateID);
-                pepper.removeTimelineFromSequences(timelineID);
-
-                var channelsIDs = pepper.getChannelsOfTimeline(timelineID);
-                for (var n = 0; n < channelsIDs.length; n++) {
-                    var channelID = channelsIDs[n];
-                    pepper.removeChannelFromTimeline(channelID);
-
-                    var blockIDs = pepper.getChannelBlocks(channelID);
-                    for (var x = 0; x < blockIDs.length; x++) {
-                        var blockID = blockIDs[x];
-                        pepper.removeBlockFromTimelineChannel(blockID);
-                    }
-                }
-            }
-            pepper.removeCampaign(i_campaign_id);
-            pepper.removeCampaignBoard(i_campaign_id);
-
-            // check to see if any other campaigns are left, do some clean house and remove all campaign > boards
-            var campaignIDs = pepper.getCampaignIDs();
-            if (campaignIDs.length == 0)
-                pepper.removeAllBoards();
-
-            self.m_selectedCampaignID = -1;
-            self.m_propertiesPanel.selectView(Elements.EMPTY_PROPERTIES);
         },
 
         /**
@@ -171,28 +136,9 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             var self = this;
             var onChange = _.debounce(function (e) {
                 var text = $(e.target).val();
-                pepper.setCampaignRecord(self.m_selectedCampaignID, 'campaign_name', text);
                 self.$el.find('[data-campaignid="' + self.m_selectedCampaignID + '"]').find('h4').text(text);
             }, 333, false);
             $(Elements.FORM_CAMPAIGN_NAME).on("input", onChange);
-        },
-
-        /**
-         Get selected campaign id
-         @method getSelectedCampaign
-         @return {Number} campaign_id
-         **/
-        getSelectedCampaign: function () {
-            return this.m_selectedCampaignID;
-        },
-
-        /**
-         Set selected campaign id
-         @method setSelectedCampaign
-         **/
-        setSelectedCampaign: function (i_campaign_id) {
-            var self = this;
-            self.m_selectedCampaignID = i_campaign_id;
         }
     });
 

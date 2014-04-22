@@ -54,7 +54,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
                 self.m_stationsListView.unrender();
         }
     });
-
     return StationsViewLoader;
 });
 

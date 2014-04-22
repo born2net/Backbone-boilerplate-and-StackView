@@ -29,13 +29,11 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             BB.comBroker.listen(BB.EVENTS.APP_SIZED, $.proxy(self._onAppResized, self));
 
             $(Elements.CLASS_CAMPAIG_NMANAGER_VIEW).on('click', function () {
-                self._checkLimitedAccess();
                 appContentFaderView.selectView(Elements.CAMPAIGN_MANAGER_VIEW);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASS_RESOURCES_PANEL).on('click', function () {
-                self._checkLimitedAccess();
                 appContentFaderView.selectView(Elements.RESOURCES_PANEL);
                 self.resetPropertiesView();
             });
@@ -125,17 +123,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             }
         },
 
-        /**
-         Check is app is in limited access mode (station only) and if so show dialog model
-         @method _checkLimitedAccess
-         **/
-        _checkLimitedAccess: function () {
-            var self = this;
-            if (self.m_limitedAccess) {
-                self.forceStationOnlyViewAndDialog();
-            }
-        },
-
         _render: function () {
             $('.navbar-nav').css({
                 display: 'block'
@@ -168,16 +155,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          **/
         saveAndRestartPrompt: function (i_callBack) {
             var self = this;
-            self.m_stationsListView = BB.comBroker.getService(BB.SERVICES['STATIONS_LIST_VIEW'])
-            if (self.m_stationsListView != undefined) {
-                var totalStations = self.m_stationsListView.getTotalActiveStation();
-                if (totalStations == 0) {
-                    self.save(function () {
-                    });
-                    return;
-                }
-            }
-
             bootbox.dialog({
                 message: $(Elements.MSG_BOOTBOX_RESTART_STATIONS).text(),
                 title: $(Elements.MSG_BOOTBOX_SAVE_REMOTE_SRV).text(),
@@ -188,6 +165,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
                         callback: function () {
                             self.save(function () {
                             });
+                            return
                         }
                     },
                     danger: {
@@ -195,10 +173,8 @@ define(['jquery', 'backbone'], function ($, Backbone) {
                         className: "btn-success",
                         callback: function () {
                             self.save(function () {
-                                pepper.sendCommand('rebootPlayer', -1, function () {
-                                });
-
                             });
+                            return
                         }
                     },
                     main: {
@@ -216,27 +192,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          @method save
          @params {Function} i_callBack
          **/
-        save: function (i_callBack) {
-            var appEntryFaderView = BB.comBroker.getService(BB.SERVICES['APP_ENTRY_FADER_VIEW']);
-            appEntryFaderView.selectView(Elements.WAITS_SCREEN_ENTRY_APP);
-            pepper.save(function (i_status) {
-                appEntryFaderView.selectView(Elements.APP_CONTENT);
-                if (!i_status.status) {
-                    bootbox.dialog({
-                        message: i_status.error,
-                        title: $(Elements.MSG_BOOTBOX_PROBLEM_SAVING).text(),
-                        buttons: {
-                            danger: {
-                                label: $(Elements.MSG_BOOTBOX_OK).text(),
-                                className: "btn-danger",
-                                callback: function () {
-                                }
-                            }
-                        }
-                    });
-                }
-                i_callBack(i_status);
-            });
+        save: function () {
         }
     });
 

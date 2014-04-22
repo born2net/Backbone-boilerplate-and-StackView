@@ -2,8 +2,8 @@ Backbone / StackView Boilerplate App
 ====================================
 current version: 0.5.1
 
-A Boilerplate "real" application based on Backbone.js and powered by StackView
-------------------------------------------------------------------------------
+A backbone boilerplate using Single Page App Skeleton and powered by StackView
+-----------------------------------------------------------------------------------------
 
 Working Demo: https://secure.digitalsignage.com/boilerplate/public/index.html
 
