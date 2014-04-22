@@ -31,31 +31,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          @method render
          **/
         render: function () {
-            var self = this;
-            var screens = '';
-            var i = 0;
-
-            $(Elements.CLASS_SELECTED_RESOLUTION, self.el).off('click');
-            require(['ScreenTemplate'], function () {
-                self.orientationSelector = BB.comBroker.getService(BB.SERVICES.ORIENTATION_SELECTOR_VIEW);
-                var orientation = self.orientationSelector.model.get(BB.CONSTS.ORIENTATION);
-                $(Elements.RESOLUTION_LIST).empty();
-                for (var screenResolution in ScreenTemplate[orientation]) {
-                    screens += '<a href="#" data-resolution="' + screenResolution + '" class="' + BB.lib.unclass(Elements.CLASS_SELECTED_RESOLUTION)+ ' list-group-item">' +
-                        '<input name="resolutionOption" id="resSelector' + i + '" type="radio"/>' +
-                        '<label class="screenResolutionLabel"> ' + screenResolution + ' </label></a>'
-                    i++;
-                }
-                $(Elements.RESOLUTION_LIST).append(screens);
-                $('.selectedResolution', self.el).on('click', function (e) {
-                    var a = ($(e.target).is('a')) ? $(e.target) : $(e.target).closest('a');
-                    $(a).find(':input').prop('checked', true);
-                    self.model.set(BB.CONSTS.RESOLUTION, $(a).data('resolution'))
-                    setTimeout(function(){
-                        self.options.stackView.slideToPage(self.options.to, 'right');
-                    },500);
-                });
-            });
         },
 
         /**

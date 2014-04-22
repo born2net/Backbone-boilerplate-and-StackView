@@ -1,5 +1,5 @@
-StackView Boilerplate Application
-=================================
+Backbone / StackView Boilerplate App
+====================================
 current version: 0.5.1
 
 A Boilerplate "real" application based on Backbone.js and powered by StackView

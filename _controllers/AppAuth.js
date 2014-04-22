@@ -72,7 +72,7 @@ define(['jquery', 'backbone', 'Cookie', 'RC4'], function ($, Backbone, Cookie) {
                 var credentials = self._breakCookie(cookieCredentials);
                 self._authServer(credentials.user, credentials.pass, self.AUTH_COOKIE);
 
-            } else if (i_user.length > 2 && i_pass.length > 2) {
+            } else if (i_user.length > 1 && i_pass.length > 1) {
                 self._authServer(i_user, i_pass, self.AUTH_USER_PASS);
 
             } else {
@@ -142,16 +142,6 @@ define(['jquery', 'backbone', 'Cookie', 'RC4'], function ($, Backbone, Cookie) {
                 }
             });
             BB.comBroker.getService(BB.SERVICES['LAYOUT_ROUTER']).navigate('authenticationFailed', {trigger: true});
-        },
-
-        /**
-         Apply limited access to application since user logged in with Pro account intp Lite Studio
-         @method _applyLimitedAccess
-         @param {Object} i_navigationView
-         **/
-        _applyLimitedAccess: function (i_navigationView) {
-            i_navigationView.applyLimitedAccess();
-            i_navigationView.forceStationOnlyViewAndDialog();
         },
 
         /**

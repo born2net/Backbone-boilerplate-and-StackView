@@ -152,37 +152,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
         },
 
         /**
-         Set the navigation as limited access since user authenticated with Pro credentials and not Lite credentials
-         which allows access only to Stations module
-         @method applyLimitedAccess
-         **/
-        applyLimitedAccess: function () {
-            var self = this;
-            self.m_limitedAccess = true;
-        },
-
-        /**
-         Force app into station only mode by showing dialog message to user and pushing back into Stations Panel
-         @method forceStationOnlyViewAndDialog
-         **/
-        forceStationOnlyViewAndDialog: function () {
-            var self = this;
-            bootbox.dialog({
-                message: $(Elements.MSG_BOOTBOX_LOGIN_WRONG_CRED).text(),
-                title: $(Elements.MSG_BOOTBOX_LOGIN_PRO_CRED).text(),
-                buttons: {
-                    info: {
-                        label: $(Elements.MSG_BOOTBOX_OK).text(),
-                        className: "btn-primary",
-                        callback: function () {
-                            self._selectNavigation(Elements.CLASS_STATIONS_PANEL);
-                        }
-                    }
-                }
-            });
-        },
-
-        /**
          Reset back to default properties view which is the dashboard
          @method resetPropertiesView
          **/
