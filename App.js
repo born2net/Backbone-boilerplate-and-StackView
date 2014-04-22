@@ -40,6 +40,5 @@ define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 
             })
         }
     });
-
     return App;
 });
