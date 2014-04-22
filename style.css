@@ -75,7 +75,6 @@ aside > aside > div > ul > li {
     -moz-transition: width 0.1s ease, margin 0.1s ease;
     -o-transition: width 0.1s ease, margin 0.1s ease;
     transition: width 0.1s ease, margin 0.1s ease;
-
 }
 
 #appContent {
@@ -157,10 +156,6 @@ aside > aside > div > ul > li {
 #imgHorizontal {
     opacity: 0.6;
     cursor: pointer;
-}
-
-#delScreenButton {
-    display: inline;
 }
 
 #resourcesListView {
@@ -301,7 +296,6 @@ aside > aside > div > ul > li {
     cursor: pointer;
 }
 
-
 .alignTextLeft {
     text-align: left;
 }
@@ -324,15 +318,6 @@ aside > aside > div > ul > li {
     padding-right: 5px;
 }
 
-.dottedHR {
-    height: 6px;
-    width: 1500px;
-    position: relative;
-    border-top: 12px dotted #c1c1c1;
-    padding-bottom: 7px;
-    top: 20px;
-}
-
 .activated {
     background-color: #428bca;
     color: white;
@@ -340,7 +325,6 @@ aside > aside > div > ul > li {
 
 .whiteFont {
     color: white;
-
 }
 
 .pricingContainer {
@@ -401,8 +385,6 @@ aside > aside > div > ul > li {
 .tooltip-inner {
     min-width: 150px;
 }
-
-
 
 /************************************
  StackView styling
