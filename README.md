@@ -13,6 +13,7 @@ Component communication is achieved through ComBroker which was developed around
 
 The SAP was designed with Mobile in mind (i.e.: Bootstrap) and will cater itself to the screen size.
 For example, on wide screen the properties box will be visible to the right, but if mobile, it will turn into a popup.
+Also, if the screen is wide, but not wide enough, the properties box to the right will turn into collapsible widget.
 
 Best of all, the app is powered by StackView which allows you a simple yet effective way to switch between Backbone views.
 With StackView you have the power to switch between sliders, popups and Fade Views using smooth animation.
