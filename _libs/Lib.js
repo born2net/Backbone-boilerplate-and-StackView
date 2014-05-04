@@ -11,6 +11,12 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
     _.extend(Lib.prototype, {
 
+        CONSTS: {
+            AUTH_USER_PASS: 0,
+            AUTH_COOKIE: 1,
+            COOKIE_KEY: 'example_dom'
+        },
+
         /**
          Output formatted string to console and omit error on old browsers
          @method log
@@ -301,6 +307,87 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
         capitaliseFirst: function (string) {
             return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        },
+
+        setIntervalTimes: function(i_func, i_sleep, i_timesRun){
+            var timesRun = 0;
+            var interval = setInterval(function(){
+                timesRun += 1;
+                if(timesRun === i_timesRun){
+                    clearInterval(interval);
+                }
+                i_func();
+            }, i_sleep);
+        },
+
+        logout: function () {
+            $.removeCookie(BB.lib.CONSTS.COOKIE_KEY, {path: '/'});
+            $.cookie(BB.lib.CONSTS.COOKIE_KEY, '', { expires: -300 });
+        },
+
+        removeCookie: function(){
+            $.removeCookie(BB.lib.CONSTS.COOKIE_KEY, { path: '/' });
+            $.removeCookie(BB.lib.CONSTS.COOKIE_KEY, { path: '/_studiolite' });
+            $.removeCookie(BB.lib.CONSTS.COOKIE_KEY, { path: '/_studiolite-dev' });
+            $.removeCookie(BB.lib.CONSTS.COOKIE_KEY, { path: '/_studiolite-dist' });
+        },
+
+        bakeCookie: function (i_user, i_pass) {
+            var rc4 = new RC4(BB.globs['RC4KEY']);
+            var crumb = i_user + ':SignageStudioLite:' + i_pass + ':' + ' USER'
+            crumb = rc4.doEncrypt(crumb);
+            $.cookie(BB.lib.CONSTS.COOKIE_KEY, crumb, { expires: 300 });
+        },
+
+        getCookieCredentials: function () {
+            var cookieCredentials = $.cookie(BB.lib.CONSTS.COOKIE_KEY) == undefined ? undefined : $.cookie(BB.lib.CONSTS.COOKIE_KEY).split(' ')[0];
+            if (cookieCredentials) {
+                var rc4 = new RC4(BB.globs['RC4KEY']);
+                var crumb = rc4.doDecrypt(cookieCredentials).split(':');
+                return { user: crumb[0], pass: crumb[2] };
+            }
+            return undefined;
+        },
+
+        sendSecJson: function (i_cmd, i_jData, i_callback, i_port, i_type, i_user, i_pass) {
+            var user, pass, authMode;
+            if (i_user) {
+                user = i_user;
+                pass = i_pass;
+                authMode = BB.lib.CONSTS.AUTH_USER_PASS;
+            } else {
+                var credentials = BB.lib.getCookieCredentials();
+                if (credentials){
+                    user = credentials.user;
+                    pass = credentials.pass;
+                    authMode = BB.lib.CONSTS.AUTH_COOKIE;
+                }
+            }
+            if (user){
+                var data = {
+                    user: user,
+                    pass: pass
+                };
+                _.extend(data, i_jData);
+            }
+
+            var url = 'https://secure.example.com:' + (i_port || 443) + '/' + i_cmd + '/';
+            $.ajax({
+                url: url,
+                type: (i_type || "POST"),
+                crossDomain: true,
+                data: JSON.stringify(data),
+                dataType: "json",
+                contentType: "application/json",
+                success: function (res) {
+                    i_callback(null, res)
+                },
+                error: function (res) {
+                    i_callback('err', res)
+                }
+            });
+
+            return authMode;
         }
 
     });
