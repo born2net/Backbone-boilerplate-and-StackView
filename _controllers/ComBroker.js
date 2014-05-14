@@ -84,6 +84,10 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          @return {Object} m_services member
          **/
         getService: function (i_name) {
+            if (i_name == undefined) {
+                log('cant get undefined service ' + i_name);
+                return undefined;
+            }
             if (this.m_services[i_name]) {
                 return this.m_services[i_name]
             } else {
@@ -91,7 +95,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             }
         },
 
-        /**
+                /**
          Expose all services and data members.
          @method getAllServices
          @return {Object} m_services
