@@ -35,6 +35,8 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
          **/
         addView: function (i_view) {
             i_view.$el.hide();
+            if (i_view.el==undefined)
+                log('')
             var oid = i_view.el.id === '' ? i_view.cid : i_view.el.id;
             this.m_views[oid] = i_view;
             return oid;
@@ -73,7 +75,7 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
          **/
         selectView: function (i_view) {
             this.m_selectedView = this._parseView(i_view);
-            this._notifySubsribers(i_view);
+            this._notifySubscribers(i_view);
         },
 
         /**
@@ -88,9 +90,12 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
             return i_view;
         },
 
-        _notifySubsribers: function(i_view){
+        _notifySubscribers: function(i_view){
             var view = this._parseView(i_view);
+            // log('view: '+ view.el.id);
             this.trigger(BB.EVENTS.SELECTED_STACK_VIEW, view);
+            if (BB.comBroker)
+                BB.comBroker.fire(BB.EVENTS.SELECTED_STACK_VIEW, view);
         }
 
     });
@@ -143,14 +148,14 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
             i_toView = self._parseView(i_toView);
             if (i_toView==self.m_selectedView)
                 return;
-            self._notifySubsribers(i_toView);
+            self._notifySubscribers(i_toView);
             i_toView.$el.show();
             // toView.el.offsetWidth;
             // Position the new page at the starting position of the animation
             i_toView.el.className = "page " + i_direction;
             // Position the new page and the current page at the ending position of their
             // animation with a transition class indicating the duration of the animation
-            // and force reflow of page
+            // and force reflow of page so it renders
             i_toView.$el.parent().parent()[0].offsetWidth;
             i_toView.el.className = "page transition center";
             self.m_selectedView.el.className = "page transition " + (i_direction === "left" ? "right" : "left");
