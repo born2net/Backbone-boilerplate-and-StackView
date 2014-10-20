@@ -5,10 +5,12 @@
  @constructor
  @return {Object} instantiated AppRouter
  **/
-define(['underscore', 'jquery', 'backbone', 'AppAuth', 'NavigationView', 'AppEntryFaderView', 'LoginView', 'AppContentFaderView', 'WaitView', 'bootbox', 'CampaignManagerView', 'ResourcesView', 'ResourcesView', 'StationsViewLoader', 'SettingsView', 'ProStudioView', 'HelpView', 'LogoutView', 'CampaignSliderStackView', 'ScreenLayoutSelectorView', 'XDate', 'LanguageSelectorView'],
-    function (_, $, Backbone, AppAuth, NavigationView, AppEntryFaderView, LoginView, AppContentFaderView, WaitView, Bootbox, CampaignManagerView, ResourcesView, ResourcesView, StationsViewLoader, SettingsView, ProStudioView, HelpView, LogoutView, CampaignSliderStackView, ScreenLayoutSelectorView, XDate, LanguageSelectorView) {
+define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderView', 'LoginView', 'AppContentFaderView', 'AppSelectorView', 'WaitView', 'bootbox', 'XDate'],
+    function (_, $, Backbone, text, AppAuth, AppEntryFaderView, LoginView, AppContentFaderView, AppSelectorView, WaitView, Bootbox, XDate) {
 
         BB.SERVICES.LAYOUT_ROUTER = 'LayoutRouter';
+        BB.SERVICES.APP_CONTENT_MAILWASP_FADER_VIEW = 'AppContentMailWaspFaderView';
+        BB.SERVICES.APP_CONTENT_EVERNODES_FADER_VIEW = 'AppContentEverNodesFaderView';
 
         /**
          Event fired when app resized
@@ -30,6 +32,7 @@ define(['underscore', 'jquery', 'backbone', 'AppAuth', 'NavigationView', 'AppEnt
                 BB.comBroker.setService('XDATE', new XDate());
 
                 self._initLoginPage();
+                self._listenLoadAppSelector();
                 self._listenSizeChanges();
 
                 $(window).trigger('resize');
@@ -43,7 +46,9 @@ define(['underscore', 'jquery', 'backbone', 'AppAuth', 'NavigationView', 'AppEnt
              @method routes
              **/
             routes: {
-                "app": "_routeApp",
+                "appMailWasp": "_routeAppMailWasp",
+                "appEverNodes": "_routeAppEverNodes",
+                "appSelector": "_routeAppSelector",
                 "authenticate/:user/:pass": "_routeAuthenticate",
                 "authenticating": "_routeAuthenticating",
                 "authenticated": "_routeAuthenticated",
@@ -74,7 +79,7 @@ define(['underscore', 'jquery', 'backbone', 'AppAuth', 'NavigationView', 'AppEnt
              @method authenticating
              **/
             _routeAuthenticated: function () {
-                this.navigate('app', {trigger: true});
+                this.navigate('appSelector', {trigger: true});
             },
 
             /**
@@ -106,19 +111,48 @@ define(['underscore', 'jquery', 'backbone', 'AppAuth', 'NavigationView', 'AppEnt
             },
 
             /**
-             On successful authentication load main application StackViews per this route App
-             @method app
+             On successful authentication load app selector
+             @method _routeAppSelector
              **/
-            _routeApp: function () {
-                if (this.m_appAuth.authenticated) {
-                    this._disableBack();
-                    this._initContentPage();
-                    this._initProperties();
-                    this._initCampaignWizardPage();
-                    this._initModal();
-                    this._initDashBoard();
-                } else {
+            _routeAppSelector: function () {
+                if (!this.m_appAuth.authenticated) {
                     this.navigate('unauthenticated', {trigger: true});
+                    return;
+                }
+                this._disableBack();
+                this.m_appEntryFaderView.selectView(this.m_appSelectorView);
+            },
+
+            /**
+             Enter the MailWasp app
+             @method _routeAppMailWasp
+             **/
+            _routeAppMailWasp: function () {
+                var self = this;
+                if ($(Elements.APP_MAILWASP_CONTENT).children().length==0){
+                    require(['text!_templates/_templateMailWasp.html'], function (template) {
+                        $(Elements.APP_MAILWASP_CONTENT).append(template);
+                        self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
+                    });
+                } else {
+                    self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
+                }
+            },
+
+            /**
+             Enter the EverNodes app
+             @method _routeAppEverNodes
+             **/
+            _routeAppEverNodes: function () {
+                var self = this;
+                if ($(Elements.APP_EVERNODES_CONTENT).children().length==0){
+                    require(['text!_templates/_templateEverNodes.html', 'EverNodes'], function (template, EverNodes) {
+                        $(Elements.APP_EVERNODES_CONTENT).append(template);
+                        self.m_everNodes = new EverNodes({'stackView': self.m_appContentEverNodesFaderView});
+                        self.m_appEntryFaderView.selectView(self.m_appContentEverNodesFaderView);
+                    });
+                } else {
+                    self.m_appEntryFaderView.selectView(self.m_appContentEverNodesFaderView);
                 }
             },
 
@@ -139,8 +173,18 @@ define(['underscore', 'jquery', 'backbone', 'AppAuth', 'NavigationView', 'AppEnt
                     duration: 500
                 });
 
-                this.m_appContentFaderView = new AppContentFaderView({
-                    el: Elements.APP_CONTENT,
+                this.m_appSelectorView = new AppSelectorView({
+                    el: Elements.APP_SELECTOR,
+                    duration: 650
+                });
+
+                this.m_appContentMailWaspFaderView = new AppContentFaderView({
+                    el: Elements.APP_MAILWASP_CONTENT,
+                    duration: 650
+                });
+
+                this.m_appContentEverNodesFaderView = new AppContentFaderView({
+                    el: Elements.APP_EVERNODES_CONTENT,
                     duration: 650
                 });
 
@@ -156,189 +200,31 @@ define(['underscore', 'jquery', 'backbone', 'AppAuth', 'NavigationView', 'AppEnt
                     el: Elements.APP_LOGOUT
                 });
 
+                this.m_appEntryFaderView.addView(this.m_appSelectorView);
                 this.m_appEntryFaderView.addView(this.m_loginView);
                 this.m_appEntryFaderView.addView(this.m_logoutView);
-                this.m_appEntryFaderView.addView(this.m_appContentFaderView);
+                this.m_appEntryFaderView.addView(this.m_appContentMailWaspFaderView);
+                this.m_appEntryFaderView.addView(this.m_appContentEverNodesFaderView);
                 this.m_appEntryFaderView.addView(this.m_mainAppWaitView);
 
                 BB.comBroker.setService(BB.SERVICES['APP_AUTH'], this.m_appAuth);
                 BB.comBroker.setService(BB.SERVICES['APP_ENTRY_FADER_VIEW'], this.m_appEntryFaderView);
-                BB.comBroker.setService(BB.SERVICES['APP_CONTENT_FADER_VIEW'], this.m_appContentFaderView);
+                BB.comBroker.setService(BB.SERVICES.APP_CONTENT_MAILWASP_FADER_VIEW, this.m_appContentMailWaspFaderView);
+                BB.comBroker.setService(BB.SERVICES.APP_CONTENT_EVERNODES_FADER_VIEW, this.m_appContentEverNodesFaderView);
             },
 
-            /**
-             Update the general dashboard with stats
-             @method Update
-             **/
-            _initDashBoard: function () {
-            },
+
+
+
 
             /**
-             Use the previously created m_appContentFaderView to add list of views including campaign, stations, logout etc
-             so navigation can be switched between each content div. Also we create one special view called
-             CampaignSliderStackView that it itself is a StackView.Slider that will later allow for Campaign wizard slider animated selections.
-             @method _initContentPage
+             Listen to selection of going back to app selection screen
+             @method _listenLoadAppSelector
              **/
-            _initContentPage: function () {
-
-                this.m_navigationView = new NavigationView({
-                    el: Elements.FILE_MENU
-                });
-
-                this.m_campaignManagerView = new CampaignManagerView({
-                    el: Elements.CAMPAIGN_MANAGER_VIEW
-                });
-
-                this.m_campaignSliderStackView = new CampaignSliderStackView({
-                    el: Elements.CAMPAIGN_SLIDER
-                });
-
-                this.m_resourcesView = new ResourcesView({
-                    el: Elements.RESOURCES_PANEL,
-                    stackView: this.m_appContentFaderView
-                });
-
-                this.m_stationsViewLoader = new StationsViewLoader({
-                    el: Elements.STATIONS_PANEL,
-                    stackView: this.m_appContentFaderView
-                });
-
-                this.m_settingsView = new SettingsView({
-                    el: Elements.SETTINGS_PANEL,
-                    stackView: this.m_appContentFaderView
-                });
-
-                this.m_proStudioView = new ProStudioView({
-                    el: Elements.PRO_STUDIO_PANEL,
-                    stackView: this.m_appContentFaderView
-                });
-
-                this.m_helpView = new HelpView({
-                    el: Elements.HELP_PANEL,
-                    stackView: this.m_appContentFaderView
-                });
-
-                this.m_logoutView = new LogoutView({
-                    el: Elements.LOGOUT_PANEL,
-                    stackView: this.m_appContentFaderView
-                });
-
-                this.m_appContentFaderView.addView(this.m_campaignManagerView);
-                this.m_appContentFaderView.addView(this.m_resourcesView);
-                this.m_appContentFaderView.addView(this.m_stationsViewLoader);
-                this.m_appContentFaderView.addView(this.m_settingsView);
-                this.m_appContentFaderView.addView(this.m_proStudioView);
-                this.m_appContentFaderView.addView(this.m_helpView);
-                this.m_appContentFaderView.addView(this.m_logoutView);
-                this.m_appContentFaderView.selectView(this.m_campaignManagerView);
-
-                BB.comBroker.setService(BB.SERVICES['NAVIGATION_VIEW'], this.m_navigationView);
-            },
-
-            /**
-             Use the previously created CampaignSliderStackView to add new views to it for campaign wizard slider animation which include
-             CampaignSelector, Screen Orientation, Screen Resolution and Campaign
-             @method _initCampaignWizardPage
-             **/
-            _initCampaignWizardPage: function () {
+            _listenLoadAppSelector: function(){
                 var self = this;
-
-                require(['CampaignSelectorView', 'OrientationSelectorView', 'ResolutionSelectorView', 'CampaignNameSelectorView' ], function (CampaignSelectorView, OrientationSelectorView, ResolutionSelectorView, CampaignNameSelectorView) {
-
-                    self.m_campaignSelectorView = new CampaignSelectorView({
-                        stackView: self.m_campaignSliderStackView,
-                        from: Elements.CAMPAIGN,
-                        el: Elements.CAMPAIGN_SELECTOR,
-                        to: Elements.CAMPAIGN_NAME_SELECTOR_VIEW
-                    });
-                    BB.comBroker.setService(BB.SERVICES.CAMPAIGN_SELECTOR, self.m_campaignSelectorView);
-
-                    self.m_campaignNameSelectorView = new CampaignNameSelectorView({
-                        stackView: self.m_campaignSliderStackView,
-                        from: Elements.CAMPAIGN_SELECTOR,
-                        el: Elements.CAMPAIGN_NAME_SELECTOR_VIEW,
-                        to: Elements.ORIENTATION_SELECTOR
-                    });
-                    BB.comBroker.setService(BB.SERVICES.CAMPAIGN_NAME_SELECTOR_VIEW, self.m_campaignNameSelectorView);
-
-                    self.m_orientationSelectorView = new OrientationSelectorView({
-                        stackView: self.m_campaignSliderStackView,
-                        from: Elements.CAMPAIGN_NAME_SELECTOR_VIEW,
-                        el: Elements.ORIENTATION_SELECTOR,
-                        to: Elements.RESOLUTION_SELECTOR,
-                        model: new BB.Model({screenOrientation: null})
-                    });
-                    BB.comBroker.setService(BB.SERVICES.ORIENTATION_SELECTOR_VIEW, self.m_orientationSelectorView);
-
-                    self.m_resolutionSelectorView = new ResolutionSelectorView({
-                        stackView: self.m_campaignSliderStackView,
-                        from: Elements.ORIENTATION_SELECTOR,
-                        el: Elements.RESOLUTION_SELECTOR,
-                        to: Elements.SCREEN_LAYOUT_SELECTOR,
-                        model: new BB.Model({screenResolution: null})
-                    });
-                    BB.comBroker.setService(BB.SERVICES.RESOLUTION_SELECTOR_VIEW, self.m_resolutionSelectorView);
-
-                    self.m_screenLayoutSelectorView = new ScreenLayoutSelectorView({
-                        stackView: self.m_campaignSliderStackView,
-                        from: Elements.RESOLUTION_SELECTOR,
-                        el: Elements.SCREEN_LAYOUT_SELECTOR,
-                        to: Elements.CAMPAIGN,
-                        model: new BB.Model({screenLayout: null})
-                    });
-                    BB.comBroker.setService(BB.SERVICES.SCREEN_LAYOUT_SELECTOR_VIEW, self.m_screenLayoutSelectorView);
-
-                    self.m_campaignSliderStackView.addView(self.m_campaignSelectorView);
-                    self.m_campaignSliderStackView.addView(self.m_campaignNameSelectorView);
-                    self.m_campaignSliderStackView.addView(self.m_orientationSelectorView);
-                    self.m_campaignSliderStackView.addView(self.m_resolutionSelectorView);
-                    self.m_campaignSliderStackView.addView(self.m_screenLayoutSelectorView);
-                    self.m_campaignSliderStackView.selectView(self.m_campaignSelectorView);
-                });
-
-                this.m_appEntryFaderView.selectView(this.m_appContentFaderView);
-            },
-
-            /**
-             Create properties panel view
-             @method _initProperties
-             **/
-            _initProperties: function () {
-                require(['PropertiesView'], function (PropertiesView) {
-                    this.m_propertiesView = new PropertiesView({
-                        el: Elements.PROP_PANEL,
-                        duration: 300
-                    });
-                    this.m_emptyPropView = new BB.View({
-                        el: Elements.EMPTY_PROPERTIES
-                    });
-                    self.m_propertiesView.addView(this.m_emptyPropView);
-                    self.m_propertiesView.selectView(this.m_emptyPropView);
-                    BB.comBroker.setService(BB.SERVICES.PROPERTIES_VIEW, this.m_propertiesView);
-                });
-            },
-
-            /**
-             Create a popup modal view that's used for About Us and properties content on small screens
-             @method _initModal
-             **/
-            _initModal: function () {
-                var self = this;
-                require(['PopModalView'], function (PopModalView) {
-                    var popModalView = new PopModalView({
-                        el: Elements.POP_MODAL,
-                        animation: 'slide_top', //or 'fade'
-                        bgColor: 'white'
-                    });
-                    self.m_popUpProperties = new BB.View({el: Elements.POPUP_PROPERTIES});
-                    popModalView.addView(self.m_popUpProperties);
-
-                    self.m_popUpAboutUs = new BB.View({el: Elements.ABOUT_US});
-                    popModalView.addView(self.m_popUpAboutUs);
-
-                    self.m_popUpWait = new BB.View({el: Elements.STACK_WAIT_MODAL_VIEW});
-                    popModalView.addView(self.m_popUpWait);
-                    BB.comBroker.setService(BB.SERVICES.POP_MODAL_VIEW, popModalView);
+                $(Elements.APP_LOGO_TEXT).on('click',function(e){
+                    self.navigate('appSelector', {trigger: true});
                 });
             },
 

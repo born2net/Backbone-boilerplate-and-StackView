@@ -77,13 +77,22 @@ aside > aside > div > ul > li {
     transition: width 0.1s ease, margin 0.1s ease;
 }
 
-#appContent {
+#appMailWaspContent {
     height: 100%;
     width: 100%;
     min-height: 100%;
     min-width: 100%;
     /* background-color: pink; */
 }
+
+#appEverNodesContent {
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    /* background-color: pink; */
+}
+
 
 #footer {
     height: 60px; /* respective of footer */
@@ -286,6 +295,10 @@ aside > aside > div > ul > li {
 
 .navbar-nav {
     display: none;
+}
+
+.centerElement {
+    margin: 0 auto;
 }
 
 .propControlWidth {

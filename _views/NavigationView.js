@@ -20,7 +20,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
             this._render();
 
-            var appContentFaderView = BB.comBroker.getService(BB.SERVICES['APP_CONTENT_FADER_VIEW']);
+            var appContentEverNodesFaderView = BB.comBroker.getService(BB.SERVICES.APP_CONTENT_EVERNODES_FADER_VIEW);
             var appEntryFaderView = BB.comBroker.getService(BB.SERVICES['APP_ENTRY_FADER_VIEW']);
 
             var appWidth = BB.comBroker.getService(BB.SERVICES.LAYOUT_ROUTER).getAppWidth();
@@ -29,32 +29,32 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             BB.comBroker.listen(BB.EVENTS.APP_SIZED, $.proxy(self._onAppResized, self));
 
             $(Elements.CLASS_CAMPAIG_NMANAGER_VIEW).on('click', function () {
-                appContentFaderView.selectView(Elements.CAMPAIGN_MANAGER_VIEW);
+                appContentEverNodesFaderView.selectView(Elements.CAMPAIGN_MANAGER_VIEW);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASS_RESOURCES_PANEL).on('click', function () {
-                appContentFaderView.selectView(Elements.RESOURCES_PANEL);
+                appContentEverNodesFaderView.selectView(Elements.RESOURCES_PANEL);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASS_STATIONS_PANEL).on('click', function () {
-                appContentFaderView.selectView(Elements.STATIONS_PANEL);
+                appContentEverNodesFaderView.selectView(Elements.STATIONS_PANEL);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASS_SETTINGS_PANEL).on('click', function () {
-                appContentFaderView.selectView(Elements.SETTINGS_PANEL);
+                appContentEverNodesFaderView.selectView(Elements.SETTINGS_PANEL);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASSS_PRO_STUDIO_PANEL).on('click', function () {
-                appContentFaderView.selectView(Elements.PRO_STUDIO_PANEL);
+                appContentEverNodesFaderView.selectView(Elements.PRO_STUDIO_PANEL);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASS_HELP_PANEL).on('click', function () {
-                appContentFaderView.selectView(Elements.HELP_PANEL);
+                appContentEverNodesFaderView.selectView(Elements.HELP_PANEL);
                 self.resetPropertiesView();
             });
 
