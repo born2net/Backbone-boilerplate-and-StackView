@@ -37,8 +37,6 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
 
                 $(window).trigger('resize');
                 $('[data-toggle="tooltip"]').tooltip({'placement': 'bottom', 'delay': 1000});
-
-
             },
 
             /**
@@ -133,10 +131,13 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
                     require(['text!_templates/_templateMailWasp.html'], function (template) {
                         $(Elements.APP_MAILWASP_CONTENT).append(template);
                         self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
+                        self._updateLayout();
                     });
                 } else {
                     self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
+                    self._updateLayout();
                 }
+
             },
 
             /**
@@ -150,9 +151,11 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
                         $(Elements.APP_EVERNODES_CONTENT).append(template);
                         self.m_everNodes = new EverNodes({'stackView': self.m_appContentEverNodesFaderView});
                         self.m_appEntryFaderView.selectView(self.m_appContentEverNodesFaderView);
+                        self._updateLayout();
                     });
                 } else {
                     self.m_appEntryFaderView.selectView(self.m_appContentEverNodesFaderView);
+                    self._updateLayout();
                 }
             },
 
@@ -213,10 +216,6 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
                 BB.comBroker.setService(BB.SERVICES.APP_CONTENT_EVERNODES_FADER_VIEW, this.m_appContentEverNodesFaderView);
             },
 
-
-
-
-
             /**
              Listen to selection of going back to app selection screen
              @method _listenLoadAppSelector
@@ -249,6 +248,7 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
                 self._appWidth = parseInt(b.css('width').replace('px', ''));
                 var h = self._appHeight - 115; // reduce footer
 
+                $(Elements.CLASS_APP_HEIGHT).height(h);
                 $(Elements.PROP_PANEL_WRAP).height(h);
                 $(Elements.MAIN_PANEL_WRAP).height(h);
                 $(Elements.APP_NAVIGATOR).height(h);

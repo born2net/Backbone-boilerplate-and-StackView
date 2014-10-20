@@ -96,6 +96,7 @@ Elements.CLASS_HELP_PANEL = '.helpPanel';
 Elements.CLASS_LOGOUT_PANEL = '.logoutPanel';
 Elements.CLASS_NAV_ICONS = '.navicons';
 Elements.CLASS_HELP_LINKS = '.helpLinks';
+Elements.CLASS_APP_HEIGHT = '.appHeight';
 
 
 /**
