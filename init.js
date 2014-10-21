@@ -34,7 +34,7 @@ require.config({
         'OrientationSelectorView': '_views/_everNodes/OrientationSelectorView',
         'LoginView': '_views/LoginView',
         'WaitView': '_views/WaitView',
-        'PropertiesView': '_views/PropertiesView',
+        'PropertiesView': '_views/_everNodes/PropertiesView',
         'LogoutView': '_views/_everNodes/LogoutView',
         'CampaignManagerView': '_views/_everNodes/CampaignManagerView',
         'CampaignSliderStackView': '_views/_everNodes/CampaignSliderStackView',
@@ -57,11 +57,7 @@ require.config({
         'ResolutionSelectorWaspView': '_views/_mailWasp/ResolutionSelectorWaspView',
         'NavigationWaspView': '_views/_mailWasp/NavigationWaspView',
         'ResourcesWaspView': '_views/_mailWasp/ResourcesWaspView',
-        'ProStudioWaspView': '_views/_mailWasp/ProStudioWaspView',
         'ScreenLayoutSelectorWaspView': '_views/_mailWasp/ScreenLayoutSelectorWaspView',
-        'SettingsWaspView': '_views/_mailWasp/SettingsWaspView',
-        'StationsWaspViewLoader': '_views/_mailWasp/StationsWaspViewLoader',
-        'HelpWaspView': '_views/_mailWasp/HelpWaspView',
         'LogoutWaspView': '_views/_mailWasp/LogoutWaspView'
     },
 

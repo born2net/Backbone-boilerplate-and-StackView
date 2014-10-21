@@ -4,8 +4,8 @@
  @constructor
  @return {object} instantiated MailWasp
  **/
-define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', 'ResourcesWaspView', 'StationsWaspViewLoader', 'SettingsWaspView', 'ProStudioWaspView', 'HelpWaspView', 'LogoutWaspView', 'CampaignSliderStackWaspView', 'ScreenLayoutSelectorWaspView', 'XDate', 'LanguageSelectorView'],
-    function ($, Backbone, NavigationView, CampaignManagerView, ResourcesView, StationsViewLoader, SettingsView, ProStudioView, HelpView, LogoutView, CampaignSliderStackView, ScreenLayoutSelectorView, XDate, LanguageSelectorView) {
+define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', 'ResourcesWaspView', 'LogoutWaspView', 'CampaignSliderStackWaspView', 'ScreenLayoutSelectorWaspView', 'XDate', 'LanguageSelectorView'],
+    function ($, Backbone, NavigationView, CampaignManagerView, ResourcesView, LogoutView, CampaignSliderStackView, ScreenLayoutSelectorView, XDate, LanguageSelectorView) {
 
         var MailWasp = Backbone.Controller.extend({
 
@@ -16,17 +16,8 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
             initialize: function () {
                 var self = this;
                 self._initContentPage();
-                // self._initProperties();
                 self._initCampaignWizardPage();
-                // self._initModal();
-                // self._initDashBoard();
-            },
-
-            /**
-             Update the general dashboard with stats
-             @method Update
-             **/
-            _initDashBoard: function () {
+                self._initModal();
             },
 
             /**
@@ -53,61 +44,18 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                     el: Elements.RESOURCES_PANEL_WASP,
                     stackView: self.options.stackView
                 });
-                /*
-                self.m_stationsViewLoader = new StationsViewLoader({
-                    el: Elements.STATIONS_PANEL,
-                    stackView: self.options.stackView
-                });
-
-                self.m_settingsView = new SettingsView({
-                    el: Elements.SETTINGS_PANEL,
-                    stackView: self.options.stackView
-                });
-
-                self.m_proStudioView = new ProStudioView({
-                    el: Elements.PRO_STUDIO_PANEL,
-                    stackView: self.options.stackView
-                });
-
-                self.m_helpView = new HelpView({
-                    el: Elements.HELP_PANEL,
-                    stackView: self.options.stackView
-                });
 
                 self.m_logoutView = new LogoutView({
-                    el: Elements.LOGOUT_PANEL,
+                    el: Elements.LOGOUT_PANEL_WASP,
                     stackView: self.options.stackView
                 });
-                */
+
                 self.options.stackView.addView(this.m_campaignManagerView);
                 self.options.stackView.addView(this.m_resourcesView);
-                //self.options.stackView.addView(this.m_stationsViewLoader);
-                //self.options.stackView.addView(this.m_settingsView);
-                //self.options.stackView.addView(this.m_proStudioView);
-                //self.options.stackView.addView(this.m_helpView);
-                //self.options.stackView.addView(this.m_logoutView);
-                //self.options.stackView.selectView(this.m_campaignManagerView);
+                self.options.stackView.addView(this.m_logoutView);
+                self.options.stackView.selectView(this.m_campaignManagerView);
 
                 BB.comBroker.setService(BB.SERVICES['NAVIGATION_VIEW'], this.m_navigationView);
-            },
-
-            /**
-             Create properties panel view
-             @method _initProperties
-             **/
-            _initProperties: function () {
-                require(['PropertiesView'], function (PropertiesView) {
-                    this.m_propertiesView = new PropertiesView({
-                        el: Elements.PROP_PANEL,
-                        duration: 300
-                    });
-                    this.m_emptyPropView = new BB.View({
-                        el: Elements.EMPTY_PROPERTIES
-                    });
-                    self.m_propertiesView.addView(this.m_emptyPropView);
-                    self.m_propertiesView.selectView(this.m_emptyPropView);
-                    BB.comBroker.setService(BB.SERVICES.PROPERTIES_VIEW, this.m_propertiesView);
-                });
             },
 
             /**
@@ -138,8 +86,8 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
 
                     self.m_orientationSelectorView = new OrientationSelectorView({
                         stackView: self.m_campaignSliderStackView,
-                        from: Elements.CAMPAIGN_NAME_SELECTOR_VIEW,
-                        el: Elements.ORIENTATION_SELECTOR,
+                        from: Elements.CAMPAIGN_NAME_SELECTOR_WASP_VIEW,
+                        el: Elements.ORIENTATION_SELECTOR_WASP,
                         to: Elements.RESOLUTION_SELECTOR,
                         model: new BB.Model({screenOrientation: null})
                     });
@@ -165,7 +113,7 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
 
                     self.m_campaignSliderStackView.addView(self.m_campaignSelectorView);
                     self.m_campaignSliderStackView.addView(self.m_campaignNameSelectorView);
-                    // self.m_campaignSliderStackView.addView(self.m_orientationSelectorView);
+                    self.m_campaignSliderStackView.addView(self.m_orientationSelectorView);
                     // self.m_campaignSliderStackView.addView(self.m_resolutionSelectorView);
                     // self.m_campaignSliderStackView.addView(self.m_screenLayoutSelectorView);
                     self.m_campaignSliderStackView.selectView(self.m_campaignSelectorView);

@@ -24,6 +24,8 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
         initialize: function () {
             var self = this;
 
+            BB.comBroker.setService(BB.SERVICES.PROPERTIES_VIEW, self);
+
             BB.StackView.ViewPort.prototype.initialize.call(this);
             BB.comBroker.listen(BB.EVENTS.APP_SIZED, self._reconfigPropPanelLocation);
             BB.comBroker.listen(BB.EVENTS.APP_SIZED, self._reConfigPropPanelIcon);

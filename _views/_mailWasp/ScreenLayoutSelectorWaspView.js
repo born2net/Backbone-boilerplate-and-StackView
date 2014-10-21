@@ -40,8 +40,6 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
         _render: function () {
             var self = this;
 
-            BB.comBroker.getService(BB.SERVICES.PROPERTIES_VIEW).resetPropertiesView();
-
             $(Elements.SCREEN_LAYOUT_LIST).empty();
             var resolution = BB.comBroker.getService(BB.SERVICES.RESOLUTION_SELECTOR_VIEW).model.get(BB.CONSTS.RESOLUTION);
             var orientation = BB.comBroker.getService(BB.SERVICES.ORIENTATION_SELECTOR_VIEW).model.get(BB.CONSTS.ORIENTATION);

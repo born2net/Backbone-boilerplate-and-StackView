@@ -1,22 +1,14 @@
 <div class="row">
-<div id="appNavigatorWasp" class="hidden-xs hidden-sm hidden-md col-lg-1">
+<div id="appNavigatorWasp" class="appHeight hidden-xs hidden-sm hidden-md col-lg-1">
     <ul class="list-group">
         <li class="campaignManagerView list-group-item"><i class="navicons fa fa-tasks"></i><span
                 data-localize="navCampaign">Campaigns</span>
         <li class="resourcesPanel list-group-item"><i class="navicons fa fa-certificate"></i><span
                 data-localize="navResources">Resources</span>
-        <li class="stationsPanel list-group-item"><i class="navicons fa fa-desktop"></i><span
-                data-localize="navStation">Stations</span>
-        <li class="settingsPanel list-group-item"><i class="navicons fa fa-gears"></i><span data-localize="navSettings">Settings</span>
-        <li class="proStudioPanel list-group-item"><i class="navicons fa fa-cloud-upload"></i><span
-                data-localize="navStudioPanel">Pro (FREE)</span>
-        <li class="helpPanel list-group-item"><i class="navicons fa fa-comments"></i><span data-localize="navHelpPanel">Help</span>
         <li class="logoutPanel list-group-item"><i class="navicons fa fa-power-off"></i><span data-localize="navLogout">Logout</span>
     </ul>
 </div>
-<div id="mainPanelWrapWasp" class="col-xs-12 col-sm-9 col-md-9 col-lg-8">
-<button id="togglePanelWasp" class="propPanelIsOpen btn btn-default btn-sm hidden-lg"><span
-        class="glyphicon glyphicon-resize-horizontal"></span></button>
+<div id="mainPanelWrapWasp" class="col-xs-12 col-sm-9 col-md-12 col-lg-11">
 <div id="campaignManagerViewWasp">
     <div class="campaignSlider noScroll">
         <div id="campaignSelectorWasp" class="page center">
@@ -38,7 +30,7 @@
             <input id="newCampaignNameWasp" type="text" class="form-control" value="My campaign"
                    placeholder="Enter new campaign name" data-localize="enterNewCompaignName">
         </div>
-        <div id="orientationSelectorWasp" class="page right">
+        <div id="orientationSelectorWasp" class="appHeight page right">
             <button id="prev" type="button" class="openPropsButton btn btn-default btn-sm"><span
                     class="glyphicon glyphicon-chevron-left"></span></button>
             <h3 data-localize="screenOrientation">I am just another View</h3>
@@ -86,187 +78,8 @@
         </div>
     </div>
 </div>
-<div id="stationsPanelWasp" class="yScroll" style="display: none">
-    <button id="stationRemoveWasp" title="unregisters a remote station"
-            data-localize-tooltip="unregRemoteStationButtonToolTip" data-toggle="tooltip" type="button"
-            class="btn btn-default"><span
-            class="glyphicon glyphicon-remove-circle"></span><span
-            data-localize="removeStation"> remove station </span></button>
-    <div id="stationAlertWasp" class="alert alert-danger"><strong><span
-            data-localize="noStation">No SignagePlayer loaded...</span></strong></div>
-    <ul class="list-group" id="stationListViewWasp">
-    </ul>
-</div>
-<div id="settingsPanelWasp" style="display: none">
-    <h3 data-localize="stationSettings">Station settings</h3>
-
-    <div id="stationPollSliderContainerWasp"><span id="stationPollSliderTextWasp" data-localize="pollInterval">poll interval (in seconds):</span>
-
-        <div id="stationPollSliderWrapWasp">
-            <div id="stationPollSliderWasp" class="noUi-target noUi-ltr noUi-horizontal noUi-background"></div>
-        </div>
-        <span id="stationPollLabelWasp">120</span></div>
-</div>
-<div id="proStudioPanelWasp" style="display: none">
-    <h3 data-localize="rightPackage">Choose the package that's right for you</h3>
-    <!-- price & service -->
-    <div class="pricingContainer">
-        <div class="row"></div>
-        <br>
-
-        <div id="pricingTableWrapWasp" style="overflow-x: hidden; overflow-y: scroll; height: 100%">
-            <div class="col-md-4" id="home-boxWasp">
-                <div class="pricing_header1">
-                    <h2 class="pricing_headerh2" data-localize="studioLiteFree">StudioLite (FREE)</h2>
-
-                    <div class="space"></div>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="simpleInterface"> simple to use interface</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="campaignManager"> Campaign manager</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="timelineManagement"> Timeline management</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="screenTemplates"> Screen templates</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="screenEditor"> Screen editor</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="StationManager"> Station Manager</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="supportComponents"> Support 10 components</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="sceneEditor"> Scene editor (coming)</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="filesVIF"> Files: videos/images/flash</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="tabletsPhones"> Run on Tablets and phones</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="openSourceGitHub"> Open source (GitHub)</span></li>
-                </ul>
-                <div class="try">
-                    <p class="price">$0.00</p>
-                    <button class="btnPrice btn btn-default" disabled="disabled" href="#" type="button"
-                            data-localize="youAreHere">you are here
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-4" id="home-boxWasp">
-                <div class="pricing_header2">
-                    <h2 class="pricing_headerh2" data-localize="studioProFree">StudioPro (FREE)</h2>
-
-                    <div class="space"></div>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="higherLearningCurve"> Higher learning curve</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="professionalEditor"> Professional editor</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="campaignManager"> Campaign manager</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="timelineManagement"> Timeline management</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="channelManagement"> Channel management</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="schedulerSequencer"> Scheduler / sequencer</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="richSceneEditor"> Rich scene editor</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="supportMoreComponents"> Support more components</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="advanceStationManager"> Advance Station Manager</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="runDesktopWeb"> Runs on Desktop and Web</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="muchMore"> and much more...</span></li>
-                </ul>
-                <div class="try">
-                    <p class="price">$0.00</p>
-                    <a id="convertAccountWasp" class="btnPrice btn-primary btn btn-default" href="#" type="button"
-                       data-localize="convert">Convert</a></div>
-            </div>
-            <div class="col-md-4" id="home-boxWasp">
-                <div class="pricing_header3">
-                    <h2 class="pricing_headerh2" data-localize="enterprise">Enterprise</h2>
-
-                    <div class="space"></div>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="everythingFromLiteAndPro"> Everything from Lite & Pro</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="whiteLabel"> White label / branding</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="supportAllComponents"> Support all components</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="transitions"> Transitions / Effects</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="multiUserManagement"> Multi user management</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="advertisingManager"> Advertising manager</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="accessControl"> Access control</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="unlimitedCloudStorage"> Unlimited cloud storage</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="phoneSupport"> Phone support</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="hardwareDiscounts"> Hardware discounts</span></li>
-                    <li class="list-group-item"><span class="glyphicon glyphicon-ok"></span><span
-                            data-localize="muchMore"> and much more...</span></li>
-                </ul>
-                <div class="try">
-                    <p class="price">$99/<span data-localize="month">month</span></p>
-                    <button id="subscribeAccountWasp" class="btnPrice btn-primary btn btn-default" href="#"
-                            type="button" data-localize="subscribe"> Subscribe
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="helpPanelWasp" style="display: none">
-    <h3 data-localize="videoTutorial">Video tutorial - learn how to use StudioLite</h3>
-    <a type="button" href="http://www.digitalsignage.com/_html/signage_video.html?videoNumber=StudioLite"
-       class="helpLinks btn btn-primary btn-lg" data-localize="watchNow"> Watch it now </a>
-    <hr/>
-    <h3 data-localize="additionalLinks">Additional links</h3>
-    <ul>
-        <li><a class="helpLinks" href="http://www.digitalsignage.com/_html/signagestudio_lite.html"
-               data-localize="studioLitePage">StudioLite page</a></li>
-        <li><a class="helpLinks" href="http://script.digitalsignage.com/forum/index.php"
-               data-localize="supportForum">Support forum</a></li>
-        <li><a class="helpLinks" href="http://www.digitalsignage.com/_html/live_chat.html"
-               data-localize="liveChatSupport">Live Chat / Support</a></li>
-        <li><a class="helpLinks" href="http://git.digitalsignage.com" data-localize="openSource">Open source</a></li>
-        <li><a class="helpLinks" href="http://script.digitalsignage.com/cgi-bin/webinar.cgi"
-               data-localize="webinar">Webinar</a></li>
-        <li><a class="helpLinks" href="http://www.digitalsignage.com/_html/faqs.html" data-localize="faq">FAQs</a></li>
-        <li><a class="helpLinks" href="http://www.digitalsignage.com/support/upload/index.php?/Knowledgebase/List"
-               data-localize="knowledgeBase">Knowledge base</a></li>
-    </ul>
-    <hr/>
-</div>
 <div id="logoutPanelWasp" style="display: none">
     <h5 data-localize="logout">logout</h5>
 </div>
-</div>
-<div id="propPanelWrapWasp" class="hidden-xs col-sm-3 col-lg-3">
-    <div id="propPanelWasp">
-        <div id="emptyPropertiesWasp">
-            <h2 data-localize="dashboard">Dashboard</h2>
-            <hr/>
-            <ul class="alignTextLeft">
-                <li><span data-localize="server"> Server: </span><span id="serverNameWasp"></span></li>
-                <li><span data-localize="businessId"> Business id: </span><span id="buisinessIDWasp"></span></li>
-                <li><span data-localize="username"> User name: </span><span id="loggedUserNameWasp"></span></li>
-            </ul>
-            <hr/>
-        </div>
-        <div id="campaignPropertiesWasp" style="display: none">
-        </div>
-    </div>
 </div>
 </div>

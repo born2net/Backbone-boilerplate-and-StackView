@@ -20,13 +20,9 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             self.m_campainProperties = new BB.View({
                 el: Elements.CAMPAIGN_PROPERTIES
             });
-            // self.m_propertiesPanel = BB.comBroker.getService(BB.SERVICES.PROPERTIES_VIEW);
-            // self.m_propertiesPanel.addView(this.m_campainProperties);
-
             this._loadCampaignList();
             this._listenOpenProps();
             this._listenSelectCampaign();
-            this._listenInputChange();
             this._wireUI();
         },
 
@@ -40,27 +36,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             $(Elements.NEW_CAMPAIGN_WASP).on('click', function (e) {
                 self.options.stackView.slideToPage(self.options.to, 'right');
                 return false;
-            });
-
-            $(Elements.REMOVE_CAMPAIGN).on('click', function (e) {
-                if (self.m_selectedCampaignID != -1) {
-                    var selectedElement = self.$el.find('[data-campaignid="' + self.m_selectedCampaignID + '"]');
-                    var allCampaignIDs = pepper.getStationCampaignIDs();
-                    if (_.indexOf(allCampaignIDs, self.m_selectedCampaignID) == -1) {
-                        bootbox.confirm($(Elements.MSG_BOOTBOX_SURE_DELETE_CAMPAIGN).text(), function(result) {
-                            if (result==true){
-                                selectedElement.remove();
-                                self._removeCampaignFromMSDB(self.m_selectedCampaignID);
-                            }
-                        });
-                    } else {
-                        bootbox.alert($(Elements.MSG_BOOTBOX_CANT_DELETE_COMP).text());
-                        return false;
-                    }
-                } else {
-                    bootbox.alert($(Elements.MSG_BOOTBOX_SELECT_COMP_FIRST).text());
-                    return false;
-                }
             });
         },
 
@@ -79,7 +54,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
                 '<button type="button" class="' + BB.lib.unclass(Elements.CLASS_OPEN_PROPS_BUTTON) + ' btn btn-default btn-sm"><i style="font-size: 1.5em" class="fa fa-tasks"></i></button>' +
                 '</div>' +
                 '</a>';
-            $(Elements.CAMPAIGN_SELECTOR_LIST).append($(snippet));
+            $(Elements.CAMPAIGN_SELECTOR_LIST_WASP).append($(snippet));
         },
 
         /**
@@ -106,14 +81,8 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          **/
         _listenOpenProps: function () {
             var self = this;
-
             $(Elements.CLASS_OPEN_PROPS_BUTTON, self.el).on('click', function (e) {
-                $(Elements.CLASS_CAMPIGN_LIST_ITEM, self.el).removeClass('active');
-                var elem = $(e.target).closest('a').addClass('active');
-                self.m_selectedCampaignID = $(elem).data('campaignid');
-                $(Elements.FORM_CAMPAIGN_NAME).val('Campaign Test1');
-                self.m_propertiesPanel.selectView(self.m_campainProperties);
-                self.m_propertiesPanel.openPropertiesPanel();
+                alert('opened props')
                 return false;
             });
         },
@@ -125,20 +94,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          **/
         _removeCampaignFromMSDB: function (i_campaign_id) {
             var self = this;
-        },
-
-        /**
-         Wire changing of campaign name through campaign properties
-         @method _listenInputChange
-         @return none
-         **/
-        _listenInputChange: function () {
-            var self = this;
-            var onChange = _.debounce(function (e) {
-                var text = $(e.target).val();
-                self.$el.find('[data-campaignid="' + self.m_selectedCampaignID + '"]').find('h4').text(text);
-            }, 333, false);
-            $(Elements.FORM_CAMPAIGN_NAME).on("input", onChange);
         }
     });
 

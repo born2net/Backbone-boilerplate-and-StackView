@@ -106,7 +106,6 @@ define(['jquery', 'backbone', 'NavigationView', 'CampaignManagerView', 'Resource
                 });
                 self.m_propertiesView.addView(this.m_emptyPropView);
                 self.m_propertiesView.selectView(this.m_emptyPropView);
-                BB.comBroker.setService(BB.SERVICES.PROPERTIES_VIEW, this.m_propertiesView);
             });
         },
 

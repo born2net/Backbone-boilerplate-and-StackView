@@ -21,7 +21,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
                 el: Elements.CAMPAIGN_PROPERTIES
             });
             self.m_propertiesPanel = BB.comBroker.getService(BB.SERVICES.PROPERTIES_VIEW);
-            self.m_propertiesPanel.addView(this.m_campainProperties);
+            self.m_propertiesPanel.addView(self.m_campainProperties);
 
             this._loadCampaignList();
             this._listenOpenProps();

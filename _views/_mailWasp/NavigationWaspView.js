@@ -38,26 +38,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
                 self.resetPropertiesView();
             });
 
-            $(Elements.CLASS_STATIONS_PANEL).on('click', function () {
-                appContentMailWaspFaderView.selectView(Elements.STATIONS_PANEL);
-                self.resetPropertiesView();
-            });
-
-            $(Elements.CLASS_SETTINGS_PANEL).on('click', function () {
-                appContentMailWaspFaderView.selectView(Elements.SETTINGS_PANEL);
-                self.resetPropertiesView();
-            });
-
-            $(Elements.CLASSS_PRO_STUDIO_PANEL).on('click', function () {
-                appContentMailWaspFaderView.selectView(Elements.PRO_STUDIO_PANEL);
-                self.resetPropertiesView();
-            });
-
-            $(Elements.CLASS_HELP_PANEL).on('click', function () {
-                appContentMailWaspFaderView.selectView(Elements.HELP_PANEL);
-                self.resetPropertiesView();
-            });
-
             $(Elements.CLASS_LOGOUT_PANEL).on('click', function () {
                 self.resetPropertiesView();
                 appEntryFaderView.selectView(Elements.APP_LOGOUT);
