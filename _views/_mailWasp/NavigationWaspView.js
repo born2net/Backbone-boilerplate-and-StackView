@@ -20,7 +20,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
             this._render();
 
-            var appContentEverNodesFaderView = BB.comBroker.getService(BB.SERVICES.APP_CONTENT_EVERNODES_FADER_VIEW);
+            var appContentMailWaspFaderView = BB.comBroker.getService(BB.SERVICES.APP_CONTENT_MAILWASP_FADER_VIEW);
             var appEntryFaderView = BB.comBroker.getService(BB.SERVICES['APP_ENTRY_FADER_VIEW']);
 
             var appWidth = BB.comBroker.getService(BB.SERVICES.LAYOUT_ROUTER).getAppWidth();
@@ -29,32 +29,32 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             BB.comBroker.listen(BB.EVENTS.APP_SIZED, $.proxy(self._onAppResized, self));
 
             $(Elements.CLASS_CAMPAIG_NMANAGER_VIEW).on('click', function () {
-                appContentEverNodesFaderView.selectView(Elements.CAMPAIGN_MANAGER_VIEW);
+                appContentMailWaspFaderView.selectView(Elements.CAMPAIGN_MANAGER_WASP_VIEW);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASS_RESOURCES_PANEL).on('click', function () {
-                appContentEverNodesFaderView.selectView(Elements.RESOURCES_PANEL);
+                appContentMailWaspFaderView.selectView(Elements.RESOURCES_PANEL_WASP);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASS_STATIONS_PANEL).on('click', function () {
-                appContentEverNodesFaderView.selectView(Elements.STATIONS_PANEL);
+                appContentMailWaspFaderView.selectView(Elements.STATIONS_PANEL);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASS_SETTINGS_PANEL).on('click', function () {
-                appContentEverNodesFaderView.selectView(Elements.SETTINGS_PANEL);
+                appContentMailWaspFaderView.selectView(Elements.SETTINGS_PANEL);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASSS_PRO_STUDIO_PANEL).on('click', function () {
-                appContentEverNodesFaderView.selectView(Elements.PRO_STUDIO_PANEL);
+                appContentMailWaspFaderView.selectView(Elements.PRO_STUDIO_PANEL);
                 self.resetPropertiesView();
             });
 
             $(Elements.CLASS_HELP_PANEL).on('click', function () {
-                appContentEverNodesFaderView.selectView(Elements.HELP_PANEL);
+                appContentMailWaspFaderView.selectView(Elements.HELP_PANEL);
                 self.resetPropertiesView();
             });
 
@@ -143,7 +143,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
          @method resetPropertiesView
          **/
         resetPropertiesView: function () {
-            BB.comBroker.getService(BB.SERVICES['PROPERTIES_VIEW']).resetPropertiesView();
+            log('reset some props');
         },
 
         /**

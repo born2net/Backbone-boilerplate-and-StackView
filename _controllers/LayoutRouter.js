@@ -128,8 +128,9 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
             _routeAppMailWasp: function () {
                 var self = this;
                 if ($(Elements.APP_MAILWASP_CONTENT).children().length==0){
-                    require(['text!_templates/_templateMailWasp.html', 'MailWasp'], function (template) {
+                    require(['text!_templates/_templateMailWasp.html', 'MailWasp'], function (template, MailWasp) {
                         $(Elements.APP_MAILWASP_CONTENT).append(template);
+                        self.m_mailWasp = new MailWasp({'stackView': self.m_appContentMailWaspFaderView});
                         self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
                         self._updateLayout();
                     });

@@ -16,10 +16,10 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
             initialize: function () {
                 var self = this;
                 self._initContentPage();
-                self._initProperties();
+                // self._initProperties();
                 self._initCampaignWizardPage();
-                self._initModal();
-                self._initDashBoard();
+                // self._initModal();
+                // self._initDashBoard();
             },
 
             /**
@@ -42,7 +42,7 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                 });
 
                 self.m_campaignManagerView = new CampaignManagerView({
-                    el: Elements.CAMPAIGN_MANAGER_VIEW
+                    el: Elements.CAMPAIGN_MANAGER_WASP_VIEW
                 });
 
                 self.m_campaignSliderStackView = new CampaignSliderStackView({
@@ -50,10 +50,10 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                 });
 
                 self.m_resourcesView = new ResourcesView({
-                    el: Elements.RESOURCES_PANEL,
+                    el: Elements.RESOURCES_PANEL_WASP,
                     stackView: self.options.stackView
                 });
-
+                /*
                 self.m_stationsViewLoader = new StationsViewLoader({
                     el: Elements.STATIONS_PANEL,
                     stackView: self.options.stackView
@@ -78,15 +78,15 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                     el: Elements.LOGOUT_PANEL,
                     stackView: self.options.stackView
                 });
-
+                */
                 self.options.stackView.addView(this.m_campaignManagerView);
                 self.options.stackView.addView(this.m_resourcesView);
-                self.options.stackView.addView(this.m_stationsViewLoader);
-                self.options.stackView.addView(this.m_settingsView);
-                self.options.stackView.addView(this.m_proStudioView);
-                self.options.stackView.addView(this.m_helpView);
-                self.options.stackView.addView(this.m_logoutView);
-                self.options.stackView.selectView(this.m_campaignManagerView);
+                //self.options.stackView.addView(this.m_stationsViewLoader);
+                //self.options.stackView.addView(this.m_settingsView);
+                //self.options.stackView.addView(this.m_proStudioView);
+                //self.options.stackView.addView(this.m_helpView);
+                //self.options.stackView.addView(this.m_logoutView);
+                //self.options.stackView.selectView(this.m_campaignManagerView);
 
                 BB.comBroker.setService(BB.SERVICES['NAVIGATION_VIEW'], this.m_navigationView);
             },
@@ -118,23 +118,23 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
             _initCampaignWizardPage: function () {
                 var self = this;
 
-                require(['CampaignSelectorView', 'OrientationSelectorView', 'ResolutionSelectorView', 'CampaignNameSelectorView' ], function (CampaignSelectorView, OrientationSelectorView, ResolutionSelectorView, CampaignNameSelectorView) {
+                require(['CampaignSelectorWaspView', 'OrientationSelectorWaspView', 'ResolutionSelectorWaspView', 'CampaignNameSelectorWaspView' ], function (CampaignSelectorView, OrientationSelectorView, ResolutionSelectorView, CampaignNameSelectorView) {
 
                     self.m_campaignSelectorView = new CampaignSelectorView({
                         stackView: self.m_campaignSliderStackView,
                         from: Elements.CAMPAIGN,
-                        el: Elements.CAMPAIGN_SELECTOR,
-                        to: Elements.CAMPAIGN_NAME_SELECTOR_VIEW
+                        el: Elements.CAMPAIGN_SELECTOR_WASP,
+                        to: Elements.CAMPAIGN_NAME_SELECTOR_WASP_VIEW
                     });
-                    BB.comBroker.setService(BB.SERVICES.CAMPAIGN_SELECTOR, self.m_campaignSelectorView);
+                    // BB.comBroker.setService(BB.SERVICES.CAMPAIGN_SELECTOR, self.m_campaignSelectorView);
 
                     self.m_campaignNameSelectorView = new CampaignNameSelectorView({
                         stackView: self.m_campaignSliderStackView,
-                        from: Elements.CAMPAIGN_SELECTOR,
-                        el: Elements.CAMPAIGN_NAME_SELECTOR_VIEW,
-                        to: Elements.ORIENTATION_SELECTOR
+                        from: Elements.CAMPAIGN_SELECTOR_WASP,
+                        el: Elements.CAMPAIGN_NAME_SELECTOR_WASP_VIEW,
+                        to: Elements.ORIENTATION_SELECTOR_WASP
                     });
-                    BB.comBroker.setService(BB.SERVICES.CAMPAIGN_NAME_SELECTOR_VIEW, self.m_campaignNameSelectorView);
+                    // BB.comBroker.setService(BB.SERVICES.CAMPAIGN_NAME_SELECTOR_VIEW, self.m_campaignNameSelectorView);
 
                     self.m_orientationSelectorView = new OrientationSelectorView({
                         stackView: self.m_campaignSliderStackView,
@@ -143,7 +143,7 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                         to: Elements.RESOLUTION_SELECTOR,
                         model: new BB.Model({screenOrientation: null})
                     });
-                    BB.comBroker.setService(BB.SERVICES.ORIENTATION_SELECTOR_VIEW, self.m_orientationSelectorView);
+                    // BB.comBroker.setService(BB.SERVICES.ORIENTATION_SELECTOR_VIEW, self.m_orientationSelectorView);
 
                     self.m_resolutionSelectorView = new ResolutionSelectorView({
                         stackView: self.m_campaignSliderStackView,
@@ -152,7 +152,7 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                         to: Elements.SCREEN_LAYOUT_SELECTOR,
                         model: new BB.Model({screenResolution: null})
                     });
-                    BB.comBroker.setService(BB.SERVICES.RESOLUTION_SELECTOR_VIEW, self.m_resolutionSelectorView);
+                    // BB.comBroker.setService(BB.SERVICES.RESOLUTION_SELECTOR_VIEW, self.m_resolutionSelectorView);
 
                     self.m_screenLayoutSelectorView = new ScreenLayoutSelectorView({
                         stackView: self.m_campaignSliderStackView,
@@ -161,13 +161,13 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                         to: Elements.CAMPAIGN,
                         model: new BB.Model({screenLayout: null})
                     });
-                    BB.comBroker.setService(BB.SERVICES.SCREEN_LAYOUT_SELECTOR_VIEW, self.m_screenLayoutSelectorView);
+                    // BB.comBroker.setService(BB.SERVICES.SCREEN_LAYOUT_SELECTOR_VIEW, self.m_screenLayoutSelectorView);
 
                     self.m_campaignSliderStackView.addView(self.m_campaignSelectorView);
                     self.m_campaignSliderStackView.addView(self.m_campaignNameSelectorView);
-                    self.m_campaignSliderStackView.addView(self.m_orientationSelectorView);
-                    self.m_campaignSliderStackView.addView(self.m_resolutionSelectorView);
-                    self.m_campaignSliderStackView.addView(self.m_screenLayoutSelectorView);
+                    // self.m_campaignSliderStackView.addView(self.m_orientationSelectorView);
+                    // self.m_campaignSliderStackView.addView(self.m_resolutionSelectorView);
+                    // self.m_campaignSliderStackView.addView(self.m_screenLayoutSelectorView);
                     self.m_campaignSliderStackView.selectView(self.m_campaignSelectorView);
                 });
 

@@ -20,8 +20,8 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             self.m_campainProperties = new BB.View({
                 el: Elements.CAMPAIGN_PROPERTIES
             });
-            self.m_propertiesPanel = BB.comBroker.getService(BB.SERVICES.PROPERTIES_VIEW);
-            self.m_propertiesPanel.addView(this.m_campainProperties);
+            // self.m_propertiesPanel = BB.comBroker.getService(BB.SERVICES.PROPERTIES_VIEW);
+            // self.m_propertiesPanel.addView(this.m_campainProperties);
 
             this._loadCampaignList();
             this._listenOpenProps();
@@ -37,7 +37,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
         _wireUI: function(){
             var self = this;
 
-            $(Elements.NEW_CAMPAIGN).on('click', function (e) {
+            $(Elements.NEW_CAMPAIGN_WASP).on('click', function (e) {
                 self.options.stackView.slideToPage(self.options.to, 'right');
                 return false;
             });
