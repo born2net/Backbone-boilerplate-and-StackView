@@ -49,6 +49,15 @@ aside > aside > div > ul > li {
     /* background-color: darksalmon; */
 }
 
+#propPanel, #mainPanelWrap {
+    height: 200px;
+    /* border-left: 1px #808080 solid; */
+    -webkit-transition: width 0.1s ease, margin 0.1s ease;
+    -moz-transition: width 0.1s ease, margin 0.1s ease;
+    -o-transition: width 0.1s ease, margin 0.1s ease;
+    transition: width 0.1s ease, margin 0.1s ease;
+}
+
 #campaignPanel {
     overflow-y: scroll;
     height: auto;
@@ -68,23 +77,6 @@ aside > aside > div > ul > li {
     /* background-color: #fff5ba; */
 }
 
-#propPanel, #mainPanelWrap {
-    height: 200px;
-    /* border-left: 1px #808080 solid; */
-    -webkit-transition: width 0.1s ease, margin 0.1s ease;
-    -moz-transition: width 0.1s ease, margin 0.1s ease;
-    -o-transition: width 0.1s ease, margin 0.1s ease;
-    transition: width 0.1s ease, margin 0.1s ease;
-}
-
-#appMailWaspContent {
-    height: 100%;
-    width: 100%;
-    min-height: 100%;
-    min-width: 100%;
-    /* background-color: pink; */
-}
-
 #appEverNodesContent {
     height: 100%;
     width: 100%;
@@ -92,7 +84,6 @@ aside > aside > div > ul > li {
     min-width: 100%;
     /* background-color: pink; */
 }
-
 
 #footer {
     height: 60px; /* respective of footer */
@@ -167,13 +158,13 @@ aside > aside > div > ul > li {
     cursor: pointer;
 }
 
-#resourcesListView {
-    padding: 10px;
-}
-
 #imgVertical {
     opacity: 0.6;
     cursor: pointer;
+}
+
+#resourcesListView {
+    padding: 10px;
 }
 
 #fileRemove {
@@ -214,12 +205,133 @@ aside > aside > div > ul > li {
     top: -20px;
 }
 
+/************************************
+         Mail Wasp elements
+************************************/
+
+#mainPanelWrapWasp {
+    border-right: 2px solid #aaaaaa;
+    /* background-color: darksalmon; */
+}
+
+#propPanelWasp, #mainPanelWrapWasp {
+    height: 200px;
+    /* border-left: 1px #808080 solid; */
+    -webkit-transition: width 0.1s ease, margin 0.1s ease;
+    -moz-transition: width 0.1s ease, margin 0.1s ease;
+    -o-transition: width 0.1s ease, margin 0.1s ease;
+    transition: width 0.1s ease, margin 0.1s ease;
+}
+
+#resolutionSelectorWasp {
+    overflow-y: scroll;
+}
+
+#appMailWaspContent {
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    /* background-color: pink; */
+}
+
+#appNavigatorWasp {
+    padding: 0px;
+    margin: 0px;
+    border-right: 1px solid #dddddd;
+}
+
+#appNavigatorWasp li {
+    cursor: pointer;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-right: 0px;
+}
+
+#appNavigatorWasp li:hover {
+    /*bootstrap theme color*/;
+    background-color: #428bca;
+    color: white;
+}
+
+#screenLayoutListWasp {
+    overflow-y: scroll;
+    height: 80%;
+}
+
+#togglePanelWasp {
+    position: absolute;
+    margin: 10px;
+    width: 35px;
+    right: 30px;
+    top: 15px;
+    z-index: 110;
+}
+
+#campaignPropertiesWasp {
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+#campaignSelectionButtonsWasp {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+#imgHorizontalWasp {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+#imgVerticalWasp {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+#resourcesListViewWasp {
+    padding: 10px;
+}
+
+#stationListViewWasp {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#stationRemoveWasp {
+    margin-top: 10px;
+}
+
+#stationAlertWasp {
+    margin-right: 10px;
+    margin-top: 20px;
+}
+
+#stationPollSliderTextWasp {
+    float: left;
+}
+
+#stationPollSliderContainerWasp {
+    padding-top: 30px;
+}
+
+#stationPollSliderWrapWasp {
+    padding-left: 180px;
+    padding-right: 70px;
+}
+
+#stationPollLabelWasp {
+    float: right;
+    position: relative;
+    top: -20px;
+}
+
 .noScroll {
     overflow: hidden;
 }
 
 .noTopBorder {
-    border-top: none; !important;
+    border-top: none;
+!important;
 }
 
 .yScroll {
@@ -745,7 +857,6 @@ Software accelerated vertical
  fuelux
  ************************************/
 
-
 .spinner .btn {
     position: relative;
     width: 20px;
@@ -754,10 +865,11 @@ Software accelerated vertical
     padding-right: 9px;
     padding-left: 9px;
     -webkit-appearance: none;
-    -webkit-border-radius: 0px; !important;
-    border-bottom-left-radius: 0; !important;
+    -webkit-border-radius: 0px;
+!important;
+    border-bottom-left-radius: 0;
+!important;
 }
-
 
 .spinner .btn.disabled {
     cursor: not-allowed;
@@ -813,16 +925,73 @@ i .spinner-buttons {
 /************************************
 Language selector
 ************************************/
-.dropdownlang dd, .dropdownlang dt, .dropdownlang ul { margin:0px; padding:0px; }
-.dropdownlang dd { position:relative; }
-.dropdownlang a, .dropdownlang a:visited { color:#816c5b; text-decoration:none; outline:none;}
-.dropdownlang a:hover { color:#5d4617;}
-.dropdownlang dt a:hover { color:#5d4617; border: 1px solid #d0c9af;}
-.dropdownlang dt a {background:#e4dfcb url(_assets/arrow.png) no-repeat scroll right center; display:block; padding-right:20px; border:1px solid #d4ca9a; width:300px;}
-.dropdownlang dt a span {cursor:pointer; display:block; padding:5px;}
-.dropdownlang dd ul { background:#e4dfcb none repeat scroll 0 0; border:1px solid #d4ca9a; color:#C5C0B0; display:none; left:0px; padding:5px 0px; position:absolute; top:2px; width:auto; min-width:300px; list-style:none;}
-.dropdownlang span.value { display:none;}
-.dropdownlang dd ul li a { padding:5px; display:block;}
-.dropdownlang dd ul li a:hover { background-color:#d0c9af;}
-.dropdownlang img.flag { border:none; vertical-align:middle; margin-right:10px; }
+.dropdownlang dd, .dropdownlang dt, .dropdownlang ul {
+    margin: 0px;
+    padding: 0px;
+}
 
+.dropdownlang dd {
+    position: relative;
+}
+
+.dropdownlang a, .dropdownlang a:visited {
+    color: #816c5b;
+    text-decoration: none;
+    outline: none;
+}
+
+.dropdownlang a:hover {
+    color: #5d4617;
+}
+
+.dropdownlang dt a:hover {
+    color: #5d4617;
+    border: 1px solid #d0c9af;
+}
+
+.dropdownlang dt a {
+    background: #e4dfcb url(_assets/arrow.png) no-repeat scroll right center;
+    display: block;
+    padding-right: 20px;
+    border: 1px solid #d4ca9a;
+    width: 300px;
+}
+
+.dropdownlang dt a span {
+    cursor: pointer;
+    display: block;
+    padding: 5px;
+}
+
+.dropdownlang dd ul {
+    background: #e4dfcb none repeat scroll 0 0;
+    border: 1px solid #d4ca9a;
+    color: #C5C0B0;
+    display: none;
+    left: 0px;
+    padding: 5px 0px;
+    position: absolute;
+    top: 2px;
+    width: auto;
+    min-width: 300px;
+    list-style: none;
+}
+
+.dropdownlang span.value {
+    display: none;
+}
+
+.dropdownlang dd ul li a {
+    padding: 5px;
+    display: block;
+}
+
+.dropdownlang dd ul li a:hover {
+    background-color: #d0c9af;
+}
+
+.dropdownlang img.flag {
+    border: none;
+    vertical-align: middle;
+    margin-right: 10px;
+}

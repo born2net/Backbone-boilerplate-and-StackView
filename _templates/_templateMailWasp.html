@@ -1,5 +1,5 @@
-<div id="appRow " class="row">
-<div id="appNavigator" class="hidden-xs hidden-sm hidden-md col-lg-1">
+<div class="row">
+<div id="appNavigatorWasp" class="hidden-xs hidden-sm hidden-md col-lg-1">
     <ul class="list-group">
         <li class="campaignManagerView list-group-item"><i class="navicons fa fa-tasks"></i><span
                 data-localize="navCampaign">Campaigns</span>
@@ -14,108 +14,108 @@
         <li class="logoutPanel list-group-item"><i class="navicons fa fa-power-off"></i><span data-localize="navLogout">Logout</span>
     </ul>
 </div>
-<div id="mainPanelWrap" class="col-xs-12 col-sm-9 col-md-9 col-lg-8">
-<button id="togglePanel" class="propPanelIsOpen btn btn-default btn-sm hidden-lg"><span
+<div id="mainPanelWrapWasp" class="col-xs-12 col-sm-9 col-md-9 col-lg-8">
+<button id="togglePanelWasp" class="propPanelIsOpen btn btn-default btn-sm hidden-lg"><span
         class="glyphicon glyphicon-resize-horizontal"></span></button>
-<div id="campaignManagerView">
+<div id="campaignManagerViewWasp">
     <div class="campaignSlider noScroll">
-        <div id="campaignSelector" class="page center">
+        <div id="campaignSelectorWasp" class="page center">
             <div class="yScroll">
-                <div id="campaignSelectionButtons" class="btn-group">
-                    <button id="newCampaign" type="button" class="btn btn-default"><i style="font-size: 1em"
+                <div id="campaignSelectionButtonsWasp" class="btn-group">
+                    <button id="newCampaignWasp" type="button" class="btn btn-default"><i style="font-size: 1em"
                                                                                       class="fa fa-magic"></i> <span
                             data-localize="campaign_wizard">new campaign wizard</span></button>
                 </div>
-                <div id="campaignSelectorList" class="appList list-group"></div>
+                <div id="campaignSelectorListWasp" class="appList list-group"></div>
             </div>
         </div>
-        <div id="campaignNameSelectorView" class="page right">
+        <div id="campaignNameSelectorViewWasp" class="page right">
             <button id="prev" type="button" class="openPropsButton btn btn-default btn-sm"><span
                     class="glyphicon glyphicon-chevron-left"></span></button>
             <button id="next" type="button" class="openPropsButton btn btn-default btn-sm"><span
                     class="glyphicon glyphicon-chevron-right"></span></button>
             <h3 data-localize="selectCampaignName">I am an example of a StackView Slider</h3>
-            <input id="newCampaignName" type="text" class="form-control" value="My campaign"
+            <input id="newCampaignNameWasp" type="text" class="form-control" value="My campaign"
                    placeholder="Enter new campaign name" data-localize="enterNewCompaignName">
         </div>
-        <div id="orientationSelector" class="page right">
+        <div id="orientationSelectorWasp" class="page right">
             <button id="prev" type="button" class="openPropsButton btn btn-default btn-sm"><span
                     class="glyphicon glyphicon-chevron-left"></span></button>
             <h3 data-localize="screenOrientation">I am just another View</h3>
 
-            <div id="orientationView">
+            <div id="orientationViewWasp">
                 <table width="100%" border="0" cellspacing="0" cellpadding="50">
                     <tr>
-                        <td align="center"><img class="img-responsive" id="imgHorizontal"
+                        <td align="center"><img class="img-responsive" id="imgHorizontalWasp"
                                                 src="_assets/orientationH.png"/></td>
-                        <td align="center"><img class="img-responsive" id="imgVertical"
+                        <td align="center"><img class="img-responsive" id="imgVerticalWasp"
                                                 src="_assets/orientationV.png"/></td>
                     </tr>
                 </table>
             </div>
         </div>
-        <div id="resolutionSelector" class="page right">
+        <div id="resolutionSelectorWasp" class="page right">
             <button id="prev" type="button" class="openPropsButton btn btn-default btn-sm"><span
                     class="glyphicon glyphicon-chevron-left"></span></button>
             <h3 data-localize="screenResolution">I am the last view</h3>
 
-            <div id="resolutionList" class="list-group"></div>
+            <div id="resolutionListWasp" class="list-group"></div>
         </div>
-        <div id="screenLayoutSelector" class="page right">
+        <div id="screenLayoutSelectorWasp" class="page right">
             <button id="prev" type="button" class="openPropsButton btn btn-default btn-sm"><span
                     class="glyphicon glyphicon-chevron-left"></span></button>
             <h3 data-localize="screenLayout">Select your screen layout</h3>
 
-            <div id="screenLayoutList"></div>
+            <div id="screenLayoutListWasp"></div>
         </div>
     </div>
 </div>
-<div id="resourcesPanel" style="display: none">
-    <div id="resourcesListView">
-        <div id="files">
+<div id="resourcesPanelWasp" style="display: none">
+    <div id="resourcesListViewWasp">
+        <div id="filesWasp">
             <div align="left">
-                <button id="fileRemove" type="button" class="btn btn-default"><span
+                <button id="fileRemoveWasp" type="button" class="btn btn-default"><span
                         class="glyphicon glyphicon-remove"></span><span data-localize="remove"> remove </span></button>
             </div>
             <br/>
 
-            <div id="resourceLibListWrap" class="yScroll">
-                <ul id="resourceLibList" class="list-group">
+            <div id="resourceLibListWrapWasp" class="yScroll">
+                <ul id="resourceLibListWasp" class="list-group">
                 </ul>
             </div>
         </div>
     </div>
 </div>
-<div id="stationsPanel" class="yScroll" style="display: none">
-    <button id="stationRemove" title="unregisters a remote station"
+<div id="stationsPanelWasp" class="yScroll" style="display: none">
+    <button id="stationRemoveWasp" title="unregisters a remote station"
             data-localize-tooltip="unregRemoteStationButtonToolTip" data-toggle="tooltip" type="button"
             class="btn btn-default"><span
             class="glyphicon glyphicon-remove-circle"></span><span
             data-localize="removeStation"> remove station </span></button>
-    <div id="stationAlert" class="alert alert-danger"><strong><span
+    <div id="stationAlertWasp" class="alert alert-danger"><strong><span
             data-localize="noStation">No SignagePlayer loaded...</span></strong></div>
-    <ul class="list-group" id="stationListView">
+    <ul class="list-group" id="stationListViewWasp">
     </ul>
 </div>
-<div id="settingsPanel" style="display: none">
+<div id="settingsPanelWasp" style="display: none">
     <h3 data-localize="stationSettings">Station settings</h3>
 
-    <div id="stationPollSliderContainer"><span id="stationPollSliderText" data-localize="pollInterval">poll interval (in seconds):</span>
+    <div id="stationPollSliderContainerWasp"><span id="stationPollSliderTextWasp" data-localize="pollInterval">poll interval (in seconds):</span>
 
-        <div id="stationPollSliderWrap">
-            <div id="stationPollSlider" class="noUi-target noUi-ltr noUi-horizontal noUi-background"></div>
+        <div id="stationPollSliderWrapWasp">
+            <div id="stationPollSliderWasp" class="noUi-target noUi-ltr noUi-horizontal noUi-background"></div>
         </div>
-        <span id="stationPollLabel">120</span></div>
+        <span id="stationPollLabelWasp">120</span></div>
 </div>
-<div id="proStudioPanel" style="display: none">
+<div id="proStudioPanelWasp" style="display: none">
     <h3 data-localize="rightPackage">Choose the package that's right for you</h3>
     <!-- price & service -->
     <div class="pricingContainer">
         <div class="row"></div>
         <br>
 
-        <div id="pricingTableWrap" style="overflow-x: hidden; overflow-y: scroll; height: 100%">
-            <div class="col-md-4" id="home-box">
+        <div id="pricingTableWrapWasp" style="overflow-x: hidden; overflow-y: scroll; height: 100%">
+            <div class="col-md-4" id="home-boxWasp">
                 <div class="pricing_header1">
                     <h2 class="pricing_headerh2" data-localize="studioLiteFree">StudioLite (FREE)</h2>
 
@@ -152,7 +152,7 @@
                     </button>
                 </div>
             </div>
-            <div class="col-md-4" id="home-box">
+            <div class="col-md-4" id="home-boxWasp">
                 <div class="pricing_header2">
                     <h2 class="pricing_headerh2" data-localize="studioProFree">StudioPro (FREE)</h2>
 
@@ -184,10 +184,10 @@
                 </ul>
                 <div class="try">
                     <p class="price">$0.00</p>
-                    <a id="convertAccount" class="btnPrice btn-primary btn btn-default" href="#" type="button"
+                    <a id="convertAccountWasp" class="btnPrice btn-primary btn btn-default" href="#" type="button"
                        data-localize="convert">Convert</a></div>
             </div>
-            <div class="col-md-4" id="home-box">
+            <div class="col-md-4" id="home-boxWasp">
                 <div class="pricing_header3">
                     <h2 class="pricing_headerh2" data-localize="enterprise">Enterprise</h2>
 
@@ -219,7 +219,7 @@
                 </ul>
                 <div class="try">
                     <p class="price">$99/<span data-localize="month">month</span></p>
-                    <button id="subscribeAccount" class="btnPrice btn-primary btn btn-default" href="#"
+                    <button id="subscribeAccountWasp" class="btnPrice btn-primary btn btn-default" href="#"
                             type="button" data-localize="subscribe"> Subscribe
                     </button>
                 </div>
@@ -227,7 +227,7 @@
         </div>
     </div>
 </div>
-<div id="helpPanel" style="display: none">
+<div id="helpPanelWasp" style="display: none">
     <h3 data-localize="videoTutorial">Video tutorial - learn how to use StudioLite</h3>
     <a type="button" href="http://www.digitalsignage.com/_html/signage_video.html?videoNumber=StudioLite"
        class="helpLinks btn btn-primary btn-lg" data-localize="watchNow"> Watch it now </a>
@@ -249,25 +249,23 @@
     </ul>
     <hr/>
 </div>
-<div id="logoutPanel" style="display: none">
+<div id="logoutPanelWasp" style="display: none">
     <h5 data-localize="logout">logout</h5>
 </div>
 </div>
-<div id="propPanelWrap" class="hidden-xs col-sm-3 col-lg-3">
-    <div id="propPanel">
-        <div id="emptyProperties">
+<div id="propPanelWrapWasp" class="hidden-xs col-sm-3 col-lg-3">
+    <div id="propPanelWasp">
+        <div id="emptyPropertiesWasp">
             <h2 data-localize="dashboard">Dashboard</h2>
             <hr/>
             <ul class="alignTextLeft">
-                <li><span data-localize="server"> Server: </span><span id="serverName"></span></li>
-                <li><span data-localize="businessId"> Business id: </span><span id="buisinessID"></span></li>
-                <li><span data-localize="username"> User name: </span><span id="loggedUserName"></span></li>
+                <li><span data-localize="server"> Server: </span><span id="serverNameWasp"></span></li>
+                <li><span data-localize="businessId"> Business id: </span><span id="buisinessIDWasp"></span></li>
+                <li><span data-localize="username"> User name: </span><span id="loggedUserNameWasp"></span></li>
             </ul>
             <hr/>
         </div>
-        <div id="campaignProperties" style="display: none">
-            <input id="formCampaignName" type="text" data-localize="campaignName" class="form-control"
-                   placeholder="Campaign name">
+        <div id="campaignPropertiesWasp" style="display: none">
         </div>
     </div>
 </div>
