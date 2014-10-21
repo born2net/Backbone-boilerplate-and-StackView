@@ -78,7 +78,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
             });
 
             $(Elements.LANGUAGE_PROMPT).on('click', function () {
-                require(['LanguageSelectorView'], function (LanguageSelectorView) {
+                require(['../LanguageSelectorView'], function (LanguageSelectorView) {
                     var uniqueID = _.uniqueId('languagePrompt')
                     var modal = bootbox.dialog({
                         message: '<div id="' + uniqueID + '"></div>',

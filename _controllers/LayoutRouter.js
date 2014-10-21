@@ -128,7 +128,7 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
             _routeAppMailWasp: function () {
                 var self = this;
                 if ($(Elements.APP_MAILWASP_CONTENT).children().length==0){
-                    require(['text!_templates/_templateMailWasp.html'], function (template) {
+                    require(['text!_templates/_templateMailWasp.html', 'MailWasp'], function (template) {
                         $(Elements.APP_MAILWASP_CONTENT).append(template);
                         self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
                         self._updateLayout();
@@ -137,7 +137,6 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
                     self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
                     self._updateLayout();
                 }
-
             },
 
             /**
