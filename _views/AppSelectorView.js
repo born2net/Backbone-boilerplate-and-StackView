@@ -21,6 +21,7 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
 
         events: {
             'click button': function(e){
+                var self = this;
                 var t = $(e.target).hasClass('fa') ? $(e.target).parent() : e.target;
                 var name = $(t).attr('name');
                 switch (name){
