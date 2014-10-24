@@ -77,8 +77,9 @@ define(['jquery', 'backbone'], function ($, Backbone) {
                 window.open('http://www.digitalsignage.com/_html/live_chat.html', '_blank');
             });
 
-            $(Elements.LANGUAGE_PROMPT).on('click', function () {
-                require(['../LanguageSelectorView'], function (LanguageSelectorView) {
+            $(Elements.LANGUAGE_PROMPT).on('click', function (e) {
+                e.stopImmediatePropagation();
+                require(['LanguageSelectorView'], function (LanguageSelectorView) {
                     var uniqueID = _.uniqueId('languagePrompt')
                     var modal = bootbox.dialog({
                         message: '<div id="' + uniqueID + '"></div>',
