@@ -5,11 +5,20 @@
  @constructor
  @return {Object} instantiated App
  **/
-define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 'ComBroker', 'Lib'], function (_, $, Backbone, Bootstrap, backbonecontroller, ComBroker, Lib) {
+define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 'ComBroker', 'Lib', 'socketio'], function (_, $, Backbone, Bootstrap, backbonecontroller, ComBroker, Lib, socketio) {
     var App = Backbone.Controller.extend({
 
         // app init
         initialize: function () {
+
+
+            var socket = socketio.connect('https://secure.digitalsignage.com:442');
+            socket.on('news', function (data) {
+                console.log(data.hello);
+                socket.emit('my other event', { my: 'data' });
+            });
+
+
             window.BB = Backbone;
             BB.globs = {};
             BB.SERVICES = {};

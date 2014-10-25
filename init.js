@@ -20,6 +20,7 @@ require.config({
         'simplestorage': '_common/_js/simplestorage/simpleStorage',
         'underscore': '_common/_js/underscore/underscore',
         'bootstrap': '_common/_js/bootstrap/js/bootstrap',
+        'socketio': '_common/_js/socketio/socketio',
         'Elements': 'Elements',
         'localizer': '_common/_js/localizer/dist/jquery.localize',
         'LayoutRouter': '_controllers/LayoutRouter',
@@ -81,6 +82,9 @@ require.config({
         'Cookie': {
             deps: ['jquery'],
             exports: 'cookie'
+        },
+        'socketio': {
+            exports: 'socketio'
         },
         'nouislider': {
             exports: 'nouislider'
