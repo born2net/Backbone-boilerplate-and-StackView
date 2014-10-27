@@ -12,6 +12,7 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
         BB.SERVICES.APP_CONTENT_MAILWASP_FADER_VIEW = 'AppContentMailWaspFaderView';
         BB.SERVICES.APP_CONTENT_EVERNODES_FADER_VIEW = 'AppContentEverNodesFaderView';
 
+
         /**
          Event fired when app resized
          @event APP_SIZED
@@ -135,12 +136,12 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
                             'stackView': self.m_appContentMailWaspFaderView
                         });
                         self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
-                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).createNavigation();
-                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).selectApp('everNodes');
+                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).selectApp(BB.CONSTS.MAILWASP);
                         self._updateLayout();
                     });
                 } else {
                     self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
+                    BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).selectApp(BB.CONSTS.MAILWASP);
                     self._updateLayout();
                 }
             },
@@ -159,12 +160,12 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
                             'stackView': self.m_appContentEverNodesFaderView
                         });
                         self.m_appEntryFaderView.selectView(self.m_appContentEverNodesFaderView);
-                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).createNavigation();
-                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).selectApp('mailWasp');
+                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).selectApp(BB.CONSTS.EVERNODES);
                         self._updateLayout();
                     });
                 } else {
                     self.m_appEntryFaderView.selectView(self.m_appContentEverNodesFaderView);
+                    BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).selectApp(BB.CONSTS.EVERNODES);
                     self._updateLayout();
                 }
             },

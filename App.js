@@ -34,6 +34,11 @@ define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 
             BB.comBroker.name = 'AppBroker';
             window.log = BB.lib.log;
 
+            // define applications
+
+            BB.CONSTS.MAILWASP = 'mailWasp';
+            BB.CONSTS.EVERNODES = 'everNodes';
+
             // internationalization
             require(['localizer'], function () {
                 var lang = "en";

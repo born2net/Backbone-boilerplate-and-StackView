@@ -25,39 +25,49 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
             'click button': function(e){
                 var self = this;
                 var t = $(e.target).hasClass('fa') ? $(e.target).parent() : e.target;
-                var name = $(t).attr('name');
-                self.selectApp(name);
+                var appName = $(t).attr('name');
+                switch (appName){
+                    case BB.CONSTS.MAILWASP: {
+                        BB.comBroker.getService(BB.SERVICES.LAYOUT_ROUTER).navigate('appMailWasp', {trigger: true});
+                        break;
+                    }
+                    case BB.CONSTS.EVERNODES: {
+                        BB.comBroker.getService(BB.SERVICES.LAYOUT_ROUTER).navigate('appEverNodes', {trigger: true});
+                        break;
+                    }
+                }
             }
         },
 
-        selectApp: function(i_appName) {
+        _loadFileMenu: function(i_appName) {
             var self = this;
             switch (i_appName){
-                case 'mailWasp': {
-                    $(Elements.FILE_NAV_WASP).show();
+                case BB.CONSTS.MAILWASP: {
+                    $(Elements.FILE_NAV_WASP)[0].style.display='';
                     $(Elements.FILE_NAV_EVER).hide();
-                    BB.comBroker.getService(BB.SERVICES.LAYOUT_ROUTER).navigate('appMailWasp', {trigger: true});
                     break;
                 }
-                case 'everNodes': {
+                case BB.CONSTS.EVERNODES: {
+                    $(Elements.FILE_NAV_EVER)[0].style.display='';
                     $(Elements.FILE_NAV_WASP).hide();
-                    $(Elements.FILE_NAV_EVER).show();
-                    BB.comBroker.getService(BB.SERVICES.LAYOUT_ROUTER).navigate('appEverNodes', {trigger: true});
                     break;
                 }
             }
         },
 
-        createNavigation: function(){
-            return;
+        selectApp: function(i_appName){
             var self = this;
-            if (self.m_navigationCreated)
+
+            if (self.m_navigationCreated){
+                self._loadFileMenu(i_appName)
                 return;
+            }
             self.m_navigationCreated = true;
             require(['text!_templates/_templateFileMenus.html'], function (template) {
                 $('body').append(template);
                 $(Elements.COMMON_FILE_MENU).append($(Elements.FILE_NAV_WASP));
                 $(Elements.COMMON_FILE_MENU).append($(Elements.FILE_NAV_EVER));
+                self._loadFileMenu(i_appName)
             });
         }
     });
