@@ -100,7 +100,8 @@ Elements.LANGUAGE_SELECTOR_TEMPLATE = '#languageSelector';
 // classes
 Elements.CLASS_CAMPIGN_LIST_ITEM = '.selectCampaignListItem';
 Elements.CLASS_OPEN_PROPS_BUTTON = '.openPropsButton';
-Elements.CLASS_CAMPAIG_NMANAGER_VIEW = '.campaignManagerView';
+Elements.CLASS_CAMPAIG_MANAGER_WASP_VIEW = '.campaignManagerWaspView';
+Elements.CLASS_CAMPAIG_MANAGER_EVER_VIEW = '.campaignManagerEverView';
 Elements.CLASS_SETTINGS_PANEL = '.settingsPanel';
 Elements.CLASS_RESOURCES_PANEL = '.resourcesPanel';
 Elements.CLASSS_PRO_STUDIO_PANEL = '.proStudioPanel';

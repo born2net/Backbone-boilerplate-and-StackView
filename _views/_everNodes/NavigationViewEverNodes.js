@@ -28,43 +28,43 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
             BB.comBroker.listen(BB.EVENTS.APP_SIZED, $.proxy(self._onAppResized, self));
 
-            $(Elements.CLASS_CAMPAIG_NMANAGER_VIEW, self.$el).on('click', function () {
+            $(Elements.CLASS_CAMPAIG_MANAGER_EVER_VIEW).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.CAMPAIGN_MANAGER_VIEW);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_RESOURCES_PANEL, self.$el).on('click', function () {
+            $(Elements.CLASS_RESOURCES_PANEL).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.RESOURCES_PANEL);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_STATIONS_PANEL, self.$el).on('click', function () {
+            $(Elements.CLASS_STATIONS_PANEL).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.STATIONS_PANEL);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_SETTINGS_PANEL, self.$el).on('click', function () {
+            $(Elements.CLASS_SETTINGS_PANEL).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.SETTINGS_PANEL);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASSS_PRO_STUDIO_PANEL, self.$el).on('click', function () {
+            $(Elements.CLASSS_PRO_STUDIO_PANEL).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.PRO_STUDIO_PANEL);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_HELP_PANEL, self.$el).on('click', function () {
+            $(Elements.CLASS_HELP_PANEL).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.HELP_PANEL);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_LOGOUT_PANEL, self.$el).on('click', function () {
+            $(Elements.CLASS_LOGOUT_PANEL).on('click', function () {
                 self.resetPropertiesView();
                 appEntryFaderView.selectView(Elements.APP_LOGOUT);
                 BB.comBroker.getService(BB.SERVICES['APP_AUTH']).logout();

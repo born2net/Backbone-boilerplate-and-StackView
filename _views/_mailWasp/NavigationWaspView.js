@@ -28,19 +28,19 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
             BB.comBroker.listen(BB.EVENTS.APP_SIZED, $.proxy(self._onAppResized, self));
 
-            $(Elements.CLASS_CAMPAIG_NMANAGER_VIEW, self.$el).on('click', function () {
+            $(Elements.CLASS_CAMPAIG_MANAGER_WASP_VIEW).on('click', function () {
                 appContentMailWaspFaderView.selectView(Elements.CAMPAIGN_MANAGER_WASP_VIEW);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_RESOURCES_PANEL, self.$el).on('click', function () {
+            $(Elements.CLASS_RESOURCES_PANEL).on('click', function () {
                 appContentMailWaspFaderView.selectView(Elements.RESOURCES_PANEL_WASP);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_LOGOUT_PANEL, self.$el).on('click', function () {
+            $(Elements.CLASS_LOGOUT_PANEL).on('click', function () {
                 self.resetPropertiesView();
                 appEntryFaderView.selectView(Elements.APP_LOGOUT);
                 BB.comBroker.getService(BB.SERVICES['APP_AUTH']).logout();
