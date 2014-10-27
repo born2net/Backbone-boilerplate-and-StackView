@@ -5,7 +5,7 @@
  @return {object} instantiated MailWasp
  **/
 define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', 'ResourcesWaspView', 'LogoutWaspView', 'CampaignSliderStackWaspView', 'ScreenLayoutSelectorWaspView', 'XDate', 'LanguageSelectorView'],
-    function ($, Backbone, NavigationView, CampaignManagerView, ResourcesView, LogoutView, CampaignSliderStackView, ScreenLayoutSelectorView, XDate, LanguageSelectorView) {
+    function ($, Backbone, NavigationViewWaspView, CampaignManagerView, ResourcesView, LogoutView, CampaignSliderStackView, ScreenLayoutSelectorView, XDate, LanguageSelectorView) {
 
         var MailWasp = Backbone.Controller.extend({
 
@@ -28,7 +28,7 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
              **/
             _initContentPage: function () {
                 var self = this;
-                self.m_navigationView = new NavigationView({
+                self.m_navigationViewWasp = new NavigationViewWaspView({
                     el: Elements.APP_NAVIGATOR_WASP
                 });
 
@@ -55,7 +55,7 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                 self.options.stackView.addView(this.m_logoutView);
                 self.options.stackView.selectView(this.m_campaignManagerView);
 
-                BB.comBroker.setService(BB.SERVICES['NAVIGATION_VIEW'], this.m_navigationView);
+                BB.comBroker.setService(BB.SERVICES['NAVIGATION_VIEW'], this.m_navigationViewWasp);
             },
 
             /**

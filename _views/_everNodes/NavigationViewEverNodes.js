@@ -1,14 +1,14 @@
 /**
  File menu / Top navigation control
- @class NavigationView
+ @class NavigationViewEverNodes
  @constructor
  @return {Object} instantiated FileMenu
  **/
 define(['jquery', 'backbone'], function ($, Backbone) {
 
-    BB.SERVICES.NAVIGATION_VIEW = 'NavigationView';
+    BB.SERVICES.NAVIGATION_VIEW = 'NavigationViewEverNodes';
 
-    var NavigationView = BB.View.extend({
+    var NavigationViewEverNodes = BB.View.extend({
 
         /**
          Constructor
@@ -210,6 +210,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
         }
     });
 
-    return NavigationView;
+    return NavigationViewEverNodes;
 });
 

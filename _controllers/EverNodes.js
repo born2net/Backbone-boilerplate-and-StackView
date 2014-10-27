@@ -4,8 +4,8 @@
  @constructor
  @return {object} instantiated EverNodes
  **/
-define(['jquery', 'backbone', 'NavigationView', 'CampaignManagerView', 'ResourcesView', 'StationsViewLoader', 'SettingsView', 'ProStudioView', 'HelpView', 'LogoutView', 'CampaignSliderStackView', 'ScreenLayoutSelectorView', 'XDate', 'LanguageSelectorView'],
-        function ($, Backbone, NavigationView, CampaignManagerView, ResourcesView, StationsViewLoader, SettingsView, ProStudioView, HelpView, LogoutView, CampaignSliderStackView, ScreenLayoutSelectorView, XDate, LanguageSelectorView) {
+define(['jquery', 'backbone', 'NavigationViewEverNodes', 'CampaignManagerView', 'ResourcesView', 'StationsViewLoader', 'SettingsView', 'ProStudioView', 'HelpView', 'LogoutView', 'CampaignSliderStackView', 'ScreenLayoutSelectorView', 'XDate', 'LanguageSelectorView'],
+        function ($, Backbone, NavigationViewEverNodes, CampaignManagerView, ResourcesView, StationsViewLoader, SettingsView, ProStudioView, HelpView, LogoutView, CampaignSliderStackView, ScreenLayoutSelectorView, XDate, LanguageSelectorView) {
 
     var EverNodes = Backbone.Controller.extend({
 
@@ -37,7 +37,7 @@ define(['jquery', 'backbone', 'NavigationView', 'CampaignManagerView', 'Resource
          **/
         _initContentPage: function () {
             var self = this;
-            self.m_navigationView = new NavigationView({
+            self.m_navigationViewWasp = new NavigationViewEverNodes({
                 el: Elements.APP_NAVIGATOR_EVER
             });
 
@@ -88,7 +88,7 @@ define(['jquery', 'backbone', 'NavigationView', 'CampaignManagerView', 'Resource
             self.options.stackView.addView(this.m_logoutView);
             self.options.stackView.selectView(this.m_campaignManagerView);
 
-            BB.comBroker.setService(BB.SERVICES['NAVIGATION_VIEW'], this.m_navigationView);
+            BB.comBroker.setService(BB.SERVICES['NAVIGATION_VIEW'], this.m_navigationViewWasp);
         },
 
         /**

@@ -42,7 +42,7 @@ require.config({
         'CampaignNameSelectorView': '_views/_everNodes/CampaignNameSelectorView',
         'CampaignSelectorView': '_views/_everNodes/CampaignSelectorView',
         'LanguageSelectorView': '_views/LanguageSelectorView',
-        'NavigationView': '_views/_everNodes/NavigationView',
+        'NavigationViewEverNodes': '_views/_everNodes/NavigationViewEverNodes',
         'ResolutionSelectorView': '_views/_everNodes/ResolutionSelectorView',
         'ResourcesView': '_views/_everNodes/ResourcesView',
         'ProStudioView': '_views/_everNodes/ProStudioView',
