@@ -11,13 +11,14 @@ define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 
         // app init
         initialize: function () {
 
-
+            /*
+            // sample socket connection
             var socket = socketio.connect('https://secure.digitalsignage.com:442');
             socket.on('news', function (data) {
                 console.log(data.hello);
                 socket.emit('my other event', { my: 'data' });
             });
-
+            */
 
             window.BB = Backbone;
             BB.globs = {};

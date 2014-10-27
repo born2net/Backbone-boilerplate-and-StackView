@@ -127,11 +127,16 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
              **/
             _routeAppMailWasp: function () {
                 var self = this;
-                if ($(Elements.APP_MAILWASP_CONTENT).children().length==0){
+                if ($(Elements.APP_MAILWASP_CONTENT).children().length == 0) {
                     require(['text!_templates/_templateMailWasp.html', 'MailWasp'], function (template, MailWasp) {
                         $(Elements.APP_MAILWASP_CONTENT).append(template);
-                        self.m_mailWasp = new MailWasp({'stackView': self.m_appContentMailWaspFaderView});
+                        self.m_mailWasp = new MailWasp({
+                            el: Elements.APP_NAVIGATOR_WASP,
+                            'stackView': self.m_appContentMailWaspFaderView
+                        });
                         self.m_appEntryFaderView.selectView(self.m_appContentMailWaspFaderView);
+                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).createNavigation();
+                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).selectApp('everNodes');
                         self._updateLayout();
                     });
                 } else {
@@ -146,11 +151,16 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
              **/
             _routeAppEverNodes: function () {
                 var self = this;
-                if ($(Elements.APP_EVERNODES_CONTENT).children().length==0){
+                if ($(Elements.APP_EVERNODES_CONTENT).children().length == 0) {
                     require(['text!_templates/_templateEverNodes.html', 'EverNodes'], function (template, EverNodes) {
                         $(Elements.APP_EVERNODES_CONTENT).append(template);
-                        self.m_everNodes = new EverNodes({'stackView': self.m_appContentEverNodesFaderView});
+                        self.m_everNodes = new EverNodes({
+                            el: Elements.APP_NAVIGATOR_EVER,
+                            'stackView': self.m_appContentEverNodesFaderView
+                        });
                         self.m_appEntryFaderView.selectView(self.m_appContentEverNodesFaderView);
+                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).createNavigation();
+                        BB.comBroker.getService(BB.SERVICES.APP_SELECTOR).selectApp('mailWasp');
                         self._updateLayout();
                     });
                 } else {
@@ -220,9 +230,9 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
              Listen to selection of going back to app selection screen
              @method _listenLoadAppSelector
              **/
-            _listenLoadAppSelector: function(){
+            _listenLoadAppSelector: function () {
                 var self = this;
-                $(Elements.APP_LOGO_TEXT).on('click',function(e){
+                $(Elements.APP_LOGO_TEXT).on('click', function (e) {
                     self.navigate('appSelector', {trigger: true});
                 });
             },
@@ -251,7 +261,8 @@ define(['underscore', 'jquery', 'backbone', 'text', 'AppAuth', 'AppEntryFaderVie
                 $(Elements.CLASS_APP_HEIGHT).height(h);
                 $(Elements.PROP_PANEL_WRAP).height(h);
                 $(Elements.MAIN_PANEL_WRAP).height(h);
-                $(Elements.APP_NAVIGATOR).height(h);
+                $(Elements.APP_NAVIGATOR_WASP).height(h);
+                $(Elements.APP_NAVIGATOR_EVER).height(h);
                 $(Elements.RESOURCE_LIB_LIST_WRAP).height(h);
                 $(Elements.PRICING_TABLE_WRAP).height(h - 200);
 

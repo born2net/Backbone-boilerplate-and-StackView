@@ -29,7 +29,7 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
             _initContentPage: function () {
                 var self = this;
                 self.m_navigationView = new NavigationView({
-                    el: Elements.FILE_MENU
+                    el: Elements.APP_NAVIGATOR_WASP
                 });
 
                 self.m_campaignManagerView = new CampaignManagerView({

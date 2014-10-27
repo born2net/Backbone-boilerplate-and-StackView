@@ -96,18 +96,82 @@ aside > aside > div > ul > li {
     margin: 0px;
 }
 
-#appNavigator {
+#appNavigatorEver {
     padding: 0px;
     margin: 0px;
     border-right: 1px solid #dddddd;
 }
 
-#appNavigator li {
+#appNavigatorEver li {
     cursor: pointer;
     padding-top: 15px;
     padding-bottom: 15px;
     border-right: 0px;
 }
+
+#appNavigatorEver li:hover {
+    /*bootstrap theme color*/;
+    background-color: #428bca;
+    color: white;
+}
+
+#appNavigatorEver {
+    padding: 0px;
+    margin: 0px;
+    border-right: 1px solid #dddddd;
+}
+
+#appNavigatorEver li {
+    cursor: pointer;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-right: 0px;
+}
+
+#appNavigatorEver li:hover {
+    /*bootstrap theme color*/;
+    background-color: #428bca;
+    color: white;
+}
+
+#appNavigatorWasp {
+    padding: 0px;
+    margin: 0px;
+    border-right: 1px solid #dddddd;
+}
+
+#appNavigatorWasp li {
+    cursor: pointer;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-right: 0px;
+}
+
+#appNavigatorWasp li:hover {
+    /*bootstrap theme color*/;
+    background-color: #428bca;
+    color: white;
+}
+
+#appNavigatorWasp {
+    padding: 0px;
+    margin: 0px;
+    border-right: 1px solid #dddddd;
+}
+
+#appNavigatorWasp li {
+    cursor: pointer;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-right: 0px;
+}
+
+#appNavigatorWasp li:hover {
+    /*bootstrap theme color*/;
+    background-color: #428bca;
+    color: white;
+}
+
 
 #waitScreenMainPanel span {
     position: relative;
@@ -115,11 +179,6 @@ aside > aside > div > ul > li {
     top: 40%;
 }
 
-#appNavigator li:hover {
-    /*bootstrap theme color*/;
-    background-color: #428bca;
-    color: white;
-}
 
 #screenLayoutList {
     overflow-y: scroll;
@@ -233,25 +292,6 @@ aside > aside > div > ul > li {
     min-height: 100%;
     min-width: 100%;
     /* background-color: pink; */
-}
-
-#appNavigatorWasp {
-    padding: 0px;
-    margin: 0px;
-    border-right: 1px solid #dddddd;
-}
-
-#appNavigatorWasp li {
-    cursor: pointer;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    border-right: 0px;
-}
-
-#appNavigatorWasp li:hover {
-    /*bootstrap theme color*/;
-    background-color: #428bca;
-    color: white;
 }
 
 #screenLayoutListWasp {
