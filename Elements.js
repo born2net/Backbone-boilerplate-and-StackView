@@ -47,7 +47,6 @@ Elements.SETTINGS_PANEL = '#settingsPanel';
 Elements.PRO_STUDIO_PANEL = '#proStudioPanel';
 Elements.HELP_PANEL = '#helpPanel';
 Elements.LOGOUT_PANEL = '#logoutPanel';
-Elements.LOGOUT_PANEL_WASP = '#logoutPanelWasp';
 Elements.IMG_HORIZONTAL = '#imgHorizontal';
 Elements.IMG_VERTICAL = '#imgVertical';
 Elements.ORIENTATION_SELECTOR = '#orientationSelector';

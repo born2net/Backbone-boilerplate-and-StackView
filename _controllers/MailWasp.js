@@ -46,7 +46,7 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                 });
 
                 self.m_logoutView = new LogoutView({
-                    el: Elements.LOGOUT_PANEL_WASP,
+                    el: Elements.LOGOUT_PANEL,
                     stackView: self.options.stackView
                 });
 

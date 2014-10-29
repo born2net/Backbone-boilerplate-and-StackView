@@ -76,6 +76,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
             $(Elements.SAVE_CONFIG).on('click', function () {
                 self.saveAndRestartPrompt(function () {
+                    return false;
                 });
             });
 
