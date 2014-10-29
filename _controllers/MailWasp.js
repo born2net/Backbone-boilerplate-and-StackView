@@ -74,7 +74,7 @@ define(['jquery', 'backbone', 'NavigationWaspView', 'CampaignManagerWaspView', '
                         el: Elements.CAMPAIGN_SELECTOR_WASP,
                         to: Elements.CAMPAIGN_NAME_SELECTOR_WASP_VIEW
                     });
-                    // BB.comBroker.setService(BB.SERVICES.CAMPAIGN_SELECTOR, self.m_campaignSelectorView);
+                    // BB.comBroker.setService(BB.SERVICES.CAMPAIGN_SELECTOR_EVER, self.m_campaignSelectorView);
 
                     self.m_campaignNameSelectorView = new CampaignNameSelectorView({
                         stackView: self.m_campaignSliderStackView,

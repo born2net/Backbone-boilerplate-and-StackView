@@ -6,7 +6,7 @@
  **/
 define(['jquery', 'backbone'], function ($, Backbone) {
 
-    BB.SERVICES.CAMPAIGN_SELECTOR = 'CampaignSelector';
+    BB.SERVICES.CAMPAIGN_SELECTOR_EVER = 'CampaignSelector';
 
     var CampaignSelectorWaspView = BB.View.extend({
 

@@ -57,18 +57,14 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
 
         selectApp: function(i_appName){
             var self = this;
-
             if (self.m_navigationCreated){
                 self._loadFileMenu(i_appName)
                 return;
             }
             self.m_navigationCreated = true;
-            require(['text!_templates/_templateFileMenus.html'], function (template) {
-                $('body').append(template);
-                $(Elements.COMMON_FILE_MENU).append($(Elements.FILE_NAV_WASP));
-                $(Elements.COMMON_FILE_MENU).append($(Elements.FILE_NAV_EVER));
-                self._loadFileMenu(i_appName)
-            });
+            $(Elements.COMMON_FILE_MENU).append($(Elements.FILE_NAV_WASP));
+            $(Elements.COMMON_FILE_MENU).append($(Elements.FILE_NAV_EVER));
+            self._loadFileMenu(i_appName);
         }
     });
 

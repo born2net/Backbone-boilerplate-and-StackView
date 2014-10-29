@@ -28,13 +28,13 @@ define(['jquery', 'backbone'], function ($, Backbone) {
 
             BB.comBroker.listen(BB.EVENTS.APP_SIZED, $.proxy(self._onAppResized, self));
 
-            $(Elements.CLASS_CAMPAIG_MANAGER_WASP_VIEW).on('click', function () {
+            $(Elements.CLASS_CAMPAIG_MANAGER_WASP).on('click', function () {
                 appContentMailWaspFaderView.selectView(Elements.CAMPAIGN_MANAGER_WASP_VIEW);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_RESOURCES_PANEL).on('click', function () {
+            $(Elements.CLASS_RESOURCES_PANEL_WASP).on('click', function () {
                 appContentMailWaspFaderView.selectView(Elements.RESOURCES_PANEL_WASP);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();

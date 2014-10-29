@@ -42,7 +42,7 @@ define(['jquery', 'backbone', 'NavigationViewEverNodes', 'CampaignManagerView', 
             });
 
             self.m_campaignManagerView = new CampaignManagerView({
-                el: Elements.CAMPAIGN_MANAGER_VIEW
+                el: Elements.CAMPAIGN_MANAGER_EVER_VIEW
             });
 
             self.m_campaignSliderStackView = new CampaignSliderStackView({
@@ -122,14 +122,14 @@ define(['jquery', 'backbone', 'NavigationViewEverNodes', 'CampaignManagerView', 
                 self.m_campaignSelectorView = new CampaignSelectorView({
                     stackView: self.m_campaignSliderStackView,
                     from: Elements.CAMPAIGN,
-                    el: Elements.CAMPAIGN_SELECTOR,
+                    el: Elements.CAMPAIGN_SELECTOR_EVER,
                     to: Elements.CAMPAIGN_NAME_SELECTOR_VIEW
                 });
-                BB.comBroker.setService(BB.SERVICES.CAMPAIGN_SELECTOR, self.m_campaignSelectorView);
+                BB.comBroker.setService(BB.SERVICES.CAMPAIGN_SELECTOR_EVER, self.m_campaignSelectorView);
 
                 self.m_campaignNameSelectorView = new CampaignNameSelectorView({
                     stackView: self.m_campaignSliderStackView,
-                    from: Elements.CAMPAIGN_SELECTOR,
+                    from: Elements.CAMPAIGN_SELECTOR_EVER,
                     el: Elements.CAMPAIGN_NAME_SELECTOR_VIEW,
                     to: Elements.ORIENTATION_SELECTOR
                 });

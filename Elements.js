@@ -68,9 +68,9 @@ Elements.CAMPAIGN_SELECTOR_LIST_WASP = '#campaignSelectorListWasp';
 Elements.CAMPAIGN = '#campaign';
 Elements.CAMPAIGN_NAME_SELECTOR_VIEW = '#campaignNameSelectorView';
 Elements.CAMPAIGN_NAME_SELECTOR_WASP_VIEW = '#campaignNameSelectorWaspView';
-Elements.CAMPAIGN_SELECTOR = '#campaignSelector';
+Elements.CAMPAIGN_SELECTOR_EVER = '#campaignSelector';
 Elements.CAMPAIGN_SELECTOR_WASP = '#campaignSelectorWasp';
-Elements.CAMPAIGN_MANAGER_VIEW = '#campaignManagerView';
+Elements.CAMPAIGN_MANAGER_EVER_VIEW = '#campaignManagerWasp';
 Elements.CAMPAIGN_MANAGER_WASP_VIEW = '#campaignManagerViewWasp';
 
 Elements.CAMPAIGN_SLIDER = '#campaignSlider';
@@ -100,10 +100,11 @@ Elements.LANGUAGE_SELECTOR_TEMPLATE = '#languageSelector';
 // classes
 Elements.CLASS_CAMPIGN_LIST_ITEM = '.selectCampaignListItem';
 Elements.CLASS_OPEN_PROPS_BUTTON = '.openPropsButton';
-Elements.CLASS_CAMPAIG_MANAGER_WASP_VIEW = '.campaignManagerWaspView';
-Elements.CLASS_CAMPAIG_MANAGER_EVER_VIEW = '.campaignManagerEverView';
+Elements.CLASS_CAMPAIG_MANAGER_WASP = '.campaignManagerWasp';
+Elements.CLASS_CAMPAIG_MANAGER_EVER = '.campaignManagerEver';
 Elements.CLASS_SETTINGS_PANEL = '.settingsPanel';
-Elements.CLASS_RESOURCES_PANEL = '.resourcesPanel';
+Elements.CLASS_RESOURCES_PANEL_WASP = '.resourcesPanelWasp';
+Elements.CLASS_RESOURCES_PANEL_EVER = '.resourcesPanelEver';
 Elements.CLASSS_PRO_STUDIO_PANEL = '.proStudioPanel';
 Elements.CLASS_STATIONS_PANEL = '.stationsPanel';
 Elements.CLASS_HELP_PANEL = '.helpPanel';
