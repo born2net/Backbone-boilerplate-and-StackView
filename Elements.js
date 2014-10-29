@@ -59,6 +59,7 @@ Elements.SCREEN_LAYOUT_LIST = '#screenLayoutList';
 Elements.NEXT = '#next';
 Elements.PREVIOUS = '#prev';
 Elements.BUISINESS_ID = '#buisinessID';
+Elements.APP_HEADER_NAME = '#appHeaderName';
 Elements.RESOURCE_LIB_LIST_WRAP = '#resourceLibListWrap';
 Elements.NEW_CAMPAIGN = '#newCampaign';
 Elements.NEW_CAMPAIGN_WASP = '#newCampaignWasp';

@@ -38,6 +38,15 @@ aside > aside > div > ul > li {
     padding: 0 0 60px; /* respective of footer */
 }
 
+#appHeaderName {
+    float: left;
+    color: #428AC9;
+    font-size: 10px;
+    position: relative;
+    top: 31px;
+    left: -40px;
+}
+
 /* Wrapper to push down from header */
 #headerPad {
     background-color: #428bca;
@@ -589,6 +598,7 @@ aside > aside > div > ul > li {
     width: 100%;
     height: 100%;
 }
+
 
 /************************************
    StackView sliders

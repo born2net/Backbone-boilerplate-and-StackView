@@ -57,6 +57,7 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
 
         selectApp: function(i_appName){
             var self = this;
+            $(Elements.APP_HEADER_NAME).text(i_appName);
             if (self.m_navigationCreated){
                 self._loadFileMenu(i_appName)
                 return;
