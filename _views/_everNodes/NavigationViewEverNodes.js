@@ -40,25 +40,25 @@ define(['jquery', 'backbone'], function ($, Backbone) {
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_STATIONS_PANEL).on('click', function () {
+            $(Elements.CLASS_STATIONS_PANEL_EVER).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.STATIONS_PANEL);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_SETTINGS_PANEL).on('click', function () {
+            $(Elements.CLASS_SETTINGS_PANEL_EVER).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.SETTINGS_PANEL);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASSS_PRO_STUDIO_PANEL).on('click', function () {
+            $(Elements.CLASSS_PRO_STUDIO_PANEL_EVER).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.PRO_STUDIO_PANEL);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
             });
 
-            $(Elements.CLASS_HELP_PANEL).on('click', function () {
+            $(Elements.CLASS_HELP_PANEL_EVER).on('click', function () {
                 appContentEverNodesFaderView.selectView(Elements.HELP_PANEL);
                 self.resetPropertiesView();
                 self._closeMobileNavigation();
