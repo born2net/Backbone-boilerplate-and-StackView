@@ -13,6 +13,8 @@
  **/
 define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
 
+    BB.EVENTS.SIDE_PANEL_SIZED = 'SIDE_PANEL_SIZED'
+
     BB.SERVICES.PROPERTIES_VIEW = 'PropertiesView';
 
     var PropertiesView = BB.StackView.Fader.extend({
@@ -50,9 +52,11 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
             if (layoutRouter.getAppWidth() < 768) {
                 $(Elements.TOGGLE_PANEL + ' > span').removeClass('glyphicon-resize-horizontal');
                 $(Elements.TOGGLE_PANEL + ' > span').addClass('glyphicon-cog');
+                $(Elements.TOGGLE_PANEL).addClass('headerPropIcon');
             } else {
                 $(Elements.TOGGLE_PANEL + ' > span').removeClass('glyphicon-cog');
                 $(Elements.TOGGLE_PANEL + ' > span').addClass('glyphicon-resize-horizontal');
+                $(Elements.TOGGLE_PANEL).removeClass('headerPropIcon');
             }
         },
 
@@ -63,6 +67,7 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
         _listenClickSlidingPanel: function () {
             var self = this;
             $(Elements.TOGGLE_PANEL).on('click', function () {
+                self._announcePanelSized();
                 self._reConfigPropPanelIcon();
                 if ($(Elements.TOGGLE_PANEL).hasClass('propPanelIsOpen')) {
                     $(Elements.TOGGLE_PANEL).toggleClass('propPanelIsOpen');
@@ -83,6 +88,18 @@ define(['jquery', 'backbone', 'StackView'], function ($, Backbone, StackView) {
                     }, 500)
                 }
             });
+        },
+
+        /**
+         Announce that the side properties panel has changed in size
+         @method _announcePanelSized
+         **/
+        _announcePanelSized: function(){
+            var self = this;
+            setTimeout(function(){
+                BB.comBroker.fire(BB.EVENTS.SIDE_PANEL_SIZED,self,self);
+            },400);
+
         },
 
         /**

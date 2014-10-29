@@ -44,6 +44,7 @@ define(['jquery', 'backbone'], function ($, Backbone) {
                 self.resetPropertiesView();
                 appEntryFaderView.selectView(Elements.APP_LOGOUT);
                 BB.comBroker.getService(BB.SERVICES['APP_AUTH']).logout();
+                self._closeMobileNavigation();
             });
 
             $(Elements.DASHBOARD).on('click', function () {

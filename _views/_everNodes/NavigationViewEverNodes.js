@@ -109,7 +109,6 @@ define(['jquery', 'backbone'], function ($, Backbone) {
         },
 
         _closeMobileNavigation: function () {
-            return;
             if ($('.navbar-header .navbar-toggle').css('display') != 'none') {
                 $(".navbar-header .navbar-toggle").trigger("click");
             }
