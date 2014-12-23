@@ -33,9 +33,9 @@ define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 
             BB.comBroker = new ComBroker();
             BB.comBroker.name = 'AppBroker';
             window.log = BB.lib.log;
+            $.ajaxSetup({cache: false});
 
             // define applications
-
             BB.CONSTS.MAILWASP = 'mailWasp';
             BB.CONSTS.EVERNODES = 'everNodes';
 

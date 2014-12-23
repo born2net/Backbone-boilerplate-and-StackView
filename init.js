@@ -14,6 +14,7 @@ require.config({
         'Lib': '_libs/Lib',
         'bootbox': '_common/_js/bootbox/bootbox',
         'nouislider': '_common/_js/nouislider/jquery.nouislider',
+        'platform': '_common/_js/platform/platform',
         'Cookie': '_common/_js/cookie/jquery.cookie',
         'ComBroker': '_controllers/ComBroker',
         'XDate': '_common/_js/xdate/xdate',
