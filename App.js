@@ -30,10 +30,14 @@ define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 
             BB.globs['RC4KEY'] = '226a3a42f34ddd778ed2c3ba56644315';
             BB.lib = new Lib();
             BB.lib.addBackboneViewOptions();
+            BB.lib.addBackboneCollectionSave();
             BB.comBroker = new ComBroker();
             BB.comBroker.name = 'AppBroker';
             window.log = BB.lib.log;
             $.ajaxSetup({cache: false});
+            $.ajaxSetup({
+                headers: {'Authorization': 'somePasswordHere'}
+            });
 
             // define applications
             BB.CONSTS.MAILWASP = 'mailWasp';

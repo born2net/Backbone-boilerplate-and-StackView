@@ -43,6 +43,16 @@ define(['jquery', 'backbone', 'platform'], function ($, Backbone, platform) {
         },
 
         /**
+         Add to backbone collection save option
+         @method addBackboneCollectionSave
+         **/
+        addBackboneCollectionSave: function () {
+            Backbone.Collection.prototype.save = function (options) {
+                Backbone.sync("create", this, options);
+            };
+        },
+
+        /**
          Validate email address format using regexp
          @method validateEmail
          @param {String} emailAddress
