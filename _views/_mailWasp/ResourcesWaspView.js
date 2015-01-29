@@ -22,8 +22,6 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
             });
 
             self._listenToSendEncryptedData();
-
-
         },
 
         _sendToServer: function (i_data) {
@@ -37,12 +35,10 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
                 success: function (e) {
                     log('done saving...');
                 },
-
                 error: function (e) {
                     log('error ajax setSecureData ' + e);
                 }
             });
-
         },
 
         _randomPassword: function () {
@@ -68,10 +64,15 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
          Listen to click and send encrypted data to server.
          1. request a public RSA key from server
          2. generate a random AES password
-         3. encrypt the message to be sent to server using the AES password
-         4. encrypt the AES password via the RSA server public key
-         5. append the RSA encrypted AES password onto the message
-         6. send message to server for decruptiona and processing
+         3. encrypt the message to be sent to server using the AES password (since we cant encrypt large messages with RSA, we have to use the much faster AES)
+         4. encrypt the header using RSA with the public key from server, and in it include the AES PASSWORD,
+         as well as md5 checksum of the entire AES encrypted message so we can confirm on the server side that the message was not tempered with by a "man in the middle"
+         5. we also receive an RSA public key version number from the server, so we send it back to the server so it will know which matching private key to pair with the public key we used
+         6. we also send a timestamp to the server so it can decided if the message is over let's say, 20-30 seconds old,
+         it should ignore it. In the future we should sync the time from server and include it in the message instead of using 'moment' since
+         if client and server on diff time zones, current setup would not be sufficient to do time comparisons with.
+         7. send message to server for decryption and processing
+
          @method _listenToSendEncryptedData
          **/
         _listenToSendEncryptedData: function () {
@@ -85,20 +86,18 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
                 var randomPassword = self._randomPassword();
 
                 // encrypt the message with AES
-                var enc = aes.enc($(Elements.SECURE_MESSAGE).val(), randomPassword);
+                var aesMessage = aes.enc($(Elements.SECURE_MESSAGE).val(), randomPassword);
 
                 // create a checksum for our secret message
-                var aesMd5CheckSum = md5(enc);
+                var aesMd5CheckSum = md5(aesMessage);
 
                 // get current time
                 var now = moment().format("MM-DD-YY_hh:mm:ss");
 
                 // test if AES decryption works
-                //var res = aes.dec(enc, randomPassword);
+                //var res = aes.dec(aesMessage, randomPassword);
 
                 // get public key and key version from server
-                var rsaPublicKey = '-----BEGIN PUBLIC KEY----- MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3f7Tc50ZlekGi3omaCX7ZMdAldoYinw1JNb2TaVZfaIuXAZE2C2sarVOvFwiI/71g3+6QP06/zZAXVKlcSZBI7H62k3UPzY1apLgx0Ay/D9/9nsH+gkcmSJx6nkHt4H7ZKqzRjh0///ei+CfkpBelI9K/zbjIK4DbSpE8wbdbEwIDAQAB -----END PUBLIC KEY-----';
-
                 $.ajax({
                     url: 'https://secure.digitalsignage.com:442/getPublicKey',
                     data: {},
@@ -118,12 +117,12 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
 
                         // transform header to a string and RSA encrypt it with public key
                         rsaMessage = JSON.stringify(rsaMessage);
-                        var encrypted = rsaEncrypt.encrypt(rsaMessage);
+                        var rsaHeader = rsaEncrypt.encrypt(rsaMessage);
 
                         // construct the message to be sent to server
                         var data = {
-                            message: enc,
-                            key: encrypted,
+                            message: aesMessage,
+                            key: rsaHeader,
                             rsaKeyVersion: e.version
                         };
 
