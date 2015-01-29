@@ -85,7 +85,7 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
             var self = this;
             $(Elements.SEND_SECURE_MESSAGE).on('click', function () {
                 // aes.enc(string, password)
-                // Defaults to 256 bit encryption
+                // Defaults to 256 bit encryption, this size must match whatever you set on server side
                 aes.size(128);
 
                 // create a random AES password
