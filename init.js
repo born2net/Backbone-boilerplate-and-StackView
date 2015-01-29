@@ -15,6 +15,8 @@ require.config({
         'bootbox': '_common/_js/bootbox/bootbox',
         'nouislider': '_common/_js/nouislider/jquery.nouislider',
         'platform': '_common/_js/platform/platform',
+        'jsencrypt': '_common/_js/jsencrypt/jsencrypt',
+        'gibberish-aes': '_common/_js/gibberish-aes/gibberish-aes',
         'Cookie': '_common/_js/cookie/jquery.cookie',
         'ComBroker': '_controllers/ComBroker',
         'XDate': '_common/_js/xdate/xdate',
@@ -102,6 +104,9 @@ require.config({
         },
         'RC4': {
             exports: 'RC4'
+        },
+        'jsencrypt': {
+            exports: 'jsencrypt'
         }
     }
 });

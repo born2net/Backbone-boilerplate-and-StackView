@@ -30,6 +30,7 @@ Elements.RESOURCES_PANEL_WASP = '#resourcesPanelWasp';
 Elements.RESOURCES_LIST_VIEW = '#resourcesListView';
 Elements.FILE_SELECTION = '#file';
 Elements.FILE_REMOVE = '#fileRemove';
+Elements.FILE_REMOVE_WASP = '#fileRemoveWasp';
 Elements.RESOURCE_LIB_LIST = '#resourceLibList';
 Elements.ABOUT_US = '#aboutUS';
 Elements.STACK_WAIT_MODAL_VIEW = '#stackWaitModalView';
