@@ -4,7 +4,7 @@
  @constructor
  @return {Object} instantiated ResourcesWaspView
  **/
-define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes'], function ($, Backbone, jsencrypt, GibberishAES) {
+define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], function ($, Backbone, jsencrypt, aes, md5, moment) {
 
     var ResourcesWaspView = Backbone.View.extend({
 
@@ -14,19 +14,46 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes'], function ($, Backbo
          **/
         initialize: function () {
             var self = this;
-            // GibberishAES.enc(string, password)
-            // Defaults to 256 bit encryption
-            GibberishAES.size(128);
-            var enc = GibberishAES.enc("This sentence is super secret", "ultra-strong-password");
-            var res1 = GibberishAES.dec(enc, "ultra-strong-password");
-
 
             self.m_rendered = false;
             self.listenTo(self.options.stackView, BB.EVENTS.SELECTED_STACK_VIEW, function (e) {
                 if (e == self)
                     self._render();
             });
+
             self._listenToSendEncryptedData();
+
+
+        },
+
+        _sendToServer: function (i_data) {
+            var self = this;
+
+            $.ajax({
+                url: 'https://secure.digitalsignage.com:442/setSecureData',
+                data: i_data,
+                type: "POST",
+                dataType: "json",
+                success: function (e) {
+                    log('done saving...');
+                },
+
+                error: function (e) {
+                    log('error ajax setSecureData ' + e);
+                }
+            });
+
+        },
+
+        _randomPassword: function () {
+            var self = this;
+            var a = (function co(lor) {
+                return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+            })('');
+            var b = (function co(lor) {
+                return (lor += [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'][Math.floor(Math.random() * 16)]) && (lor.length == 6) ? lor : co(lor);
+            })('');
+            return a + b;
         },
 
         /**
@@ -49,26 +76,65 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes'], function ($, Backbo
          **/
         _listenToSendEncryptedData: function () {
             var self = this;
-            var pub = '-----BEGIN PUBLIC KEY----- MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3f7Tc50ZlekGi3omaCX7ZMdAldoYinw1JNb2TaVZfaIuXAZE2C2sarVOvFwiI/71g3+6QP06/zZAXVKlcSZBI7H62k3UPzY1apLgx0Ay/D9/9nsH+gkcmSJx6nkHt4H7ZKqzRjh0///ei+CfkpBelI9K/zbjIK4DbSpE8wbdbEwIDAQAB -----END PUBLIC KEY-----';
-            var encrypt = new JSEncrypt();
-            encrypt.setPublicKey(pub);
-            var encrypted = encrypt.encrypt('future support for RSA encryptions ...');
-            log(encrypted);
-            return;
-            $.ajax({
-                url: '/ResetQueueCounter',
-                data: {
-                    business_id: BB.Pepper.getUserData().businessID,
-                    line_id: self.m_selectedLineID,
-                    counter: 1
-                },
-                success: function (e) {
-                    bootbox.alert('counter was reset successfully');
-                },
-                error: function (e) {
-                    log('error ajax ResetQueueCounter ' + e);
-                },
-                dataType: 'json'
+            $(Elements.SEND_SECURE_MESSAGE).on('click', function () {
+                // aes.enc(string, password)
+                // Defaults to 256 bit encryption
+                aes.size(128);
+
+                // create a random AES password
+                var randomPassword = self._randomPassword();
+
+                // encrypt the message with AES
+                var enc = aes.enc($(Elements.SECURE_MESSAGE).val(), randomPassword);
+
+                // create a checksum for our secret message
+                var aesMd5CheckSum = md5(enc);
+
+                // get current time
+                var now = moment().format("MM-DD-YY_hh:mm:ss");
+
+                // test if AES decryption works
+                //var res = aes.dec(enc, randomPassword);
+
+                // get public key and key version from server
+                var rsaPublicKey = '-----BEGIN PUBLIC KEY----- MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC3f7Tc50ZlekGi3omaCX7ZMdAldoYinw1JNb2TaVZfaIuXAZE2C2sarVOvFwiI/71g3+6QP06/zZAXVKlcSZBI7H62k3UPzY1apLgx0Ay/D9/9nsH+gkcmSJx6nkHt4H7ZKqzRjh0///ei+CfkpBelI9K/zbjIK4DbSpE8wbdbEwIDAQAB -----END PUBLIC KEY-----';
+
+                $.ajax({
+                    url: 'https://secure.digitalsignage.com:442/getPublicKey',
+                    data: {},
+                    success: function (e) {
+
+
+                        // create RSA object and set public key
+                        var rsaEncrypt = new JSEncrypt();
+                        rsaEncrypt.setPublicKey(e.publicKey);
+
+                        // construct our secure message header
+                        var rsaMessage = {
+                            aesPassword: randomPassword,
+                            aesCheckSum: aesMd5CheckSum,
+                            time: now
+                        };
+
+                        // transform header to a string and RSA encrypt it with public key
+                        rsaMessage = JSON.stringify(rsaMessage);
+                        var encrypted = rsaEncrypt.encrypt(rsaMessage);
+
+                        // construct the message to be sent to server
+                        var data = {
+                            message: enc,
+                            key: encrypted,
+                            rsaKeyVersion: e.version
+                        };
+
+                        self._sendToServer(data);
+                    },
+
+                    error: function (e) {
+                        log('error ajax getPublicKey ' + e);
+                    },
+                    dataType: 'json'
+                });
             });
         }
     });
