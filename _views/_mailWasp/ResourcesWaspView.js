@@ -14,19 +14,21 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
          **/
         initialize: function () {
             var self = this;
-
             self.m_rendered = false;
             self.listenTo(self.options.stackView, BB.EVENTS.SELECTED_STACK_VIEW, function (e) {
                 if (e == self)
                     self._render();
             });
-
             self._listenToSendEncryptedData();
         },
 
+        /**
+         Send data to server (can be send over https or http since we have an encryption protocol in place)
+         @method _sendToServer
+         @param {Object} i_data
+         **/
         _sendToServer: function (i_data) {
             var self = this;
-
             $.ajax({
                 url: 'https://secure.digitalsignage.com:442/setSecureData',
                 data: i_data,
@@ -41,6 +43,10 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
             });
         },
 
+        /**
+         Generate a random string that can be used as a one time password for message sent
+         @method _randomPassword
+         **/
         _randomPassword: function () {
             var self = this;
             var a = (function co(lor) {
@@ -102,7 +108,6 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
                     url: 'https://secure.digitalsignage.com:442/getPublicKey',
                     data: {},
                     success: function (e) {
-
 
                         // create RSA object and set public key
                         var rsaEncrypt = new JSEncrypt();
