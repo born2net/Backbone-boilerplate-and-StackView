@@ -72,7 +72,7 @@ define(['jquery', 'backbone', 'jsencrypt', 'gibberish-aes', 'md5', 'moment'], fu
          2. generate a random AES password
          3. encrypt the message to be sent to server using the AES password (since we cant encrypt large messages with RSA, we have to use the much faster AES)
          4. encrypt the header using RSA with the public key from server, and in it include the AES PASSWORD,
-         as well as md5 checksum of the entire AES encrypted message so we can confirm on the server side that the message was not tempered with by a "man in the middle"
+         as add checksum of the entire AES encrypted message so we can confirm on the server side that the message was not tempered with by a "man in the middle"
          5. we also receive an RSA public key version number from the server, so we send it back to the server so it will know which matching private key to pair with the public key we used
          6. we also send a timestamp to the server so it can decided if the message is over let's say, 20-30 seconds old,
          it should ignore it. In the future we should sync the time from server and include it in the message instead of using 'moment' since
