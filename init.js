@@ -1,6 +1,6 @@
 /**
  Require js initialization module definition file for StudioLite
- @class Require init js
+ @class Require init js for app modules
  **/
 require.config({
     waitSeconds: 25,
