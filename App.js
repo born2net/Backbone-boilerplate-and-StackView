@@ -1,5 +1,5 @@
 /**
- open aa source digital signage project.
+ open source digital signage project.
  Visit Github for license and docs: http://git.digitalsignage.com
  @class App
  @constructor
