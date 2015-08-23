@@ -1,5 +1,5 @@
 /**
- The StackView between different applications offered in the app
+ StackView between different applications offered in the app
  @class AppSelectorView
  @constructor
  @return {object} instantiated AppSelectorView
