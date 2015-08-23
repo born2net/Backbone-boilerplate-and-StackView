@@ -1,5 +1,5 @@
 /**
- App boilerplate open source digital signage project.
+ App open source digital signage project.
  Visit Github for license and docs: http://git.digitalsignage.com
  @class App
  @constructor
