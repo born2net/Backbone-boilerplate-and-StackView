@@ -10,7 +10,6 @@ define(['underscore', 'jquery', 'backbone', 'bootstrap', 'backbone.controller', 
 
         // app init
         initialize: function () {
-
             /*
             // sample socket connection
             var socket = socketio.connect('https://secure.digitalsignage.com:442');
